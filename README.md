@@ -1,16 +1,27 @@
-# ucg
+# usc-campus-guide
+The USC Campus Guide is a helpful tool for new students to navigate USC main campus. It provides a detailed map, a search function, and a GPS feature to help students find their way around.  The USC Campus Guide is an essential tool for new students to make the most of their university experience.
 
-A new Flutter project.
+# Project Rules
+- Test all your code. The tests for your commit will be examined before your code is merged into the main branch.
+- Please use lowercase with underscores naming convention for your folder and file names.
+- Ensure commit messages are descriptive and clear to understand
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Project File Structure
+- Lib 
+     - screens/  *All Code for the screens go into this folder*
+     - 
+           - screen_name/ *Make a folder for your screen* 
+           -                 
+                 - screen_name.dart *name your screen file the same as the folder*
+                 - widgets/ *folder for individual widgets that form part of the screen*
+                 - 
+                       - widgets.dart *An export file for all widgets created in the folder*
+                       - widget_name.dart *Widget Source Code*   
+                                   
+    - domains/ *This folder holds the business logic for the apps functionalities*
+    - utils/ *This folder is used to house constants and even widgets that are reused multiple times across the entire app*
+    - providers/ *This folder contains the files related to providers in the app*
+    - models/  *This folder contains the files for the data models used in the app*
+         
+  
+  
