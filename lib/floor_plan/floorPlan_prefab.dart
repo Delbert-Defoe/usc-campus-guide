@@ -196,6 +196,7 @@ Paint paint_5_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=size.wid
 paint_5_stroke.color=Color(0xff276D4A).withOpacity(1.0);
 canvas.drawPath(path_5,paint_5_stroke);
 
+//black artifact
 Paint paint_5_fill = Paint()..style=PaintingStyle.fill;
 paint_5_fill.color = Color(0xff000000).withOpacity(0.0);
 canvas.drawPath(path_5,paint_5_fill);
@@ -210,6 +211,7 @@ Paint paint_6_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=size.wid
 paint_6_stroke.color=Color(0xff276D4A).withOpacity(1.0);
 canvas.drawPath(path_6,paint_6_stroke);
 
+//black room fill
 Paint paint_6_fill = Paint()..style=PaintingStyle.fill;
 paint_6_fill.color = Color(0xff000000).withOpacity(0.0);
 canvas.drawPath(path_6,paint_6_fill);
@@ -258,8 +260,9 @@ Path path_7 = Path();
     path_7.lineTo(size.width*0.7808047,size.height*0.1292138);
     path_7.close();
 
+//LH11 black text
 Paint paint_7_fill = Paint()..style=PaintingStyle.fill;
-paint_7_fill.color = Colors.black.withOpacity(0.0);
+paint_7_fill.color = Colors.black.withOpacity(1.0);
 canvas.drawPath(path_7,paint_7_fill);
 
 Path path_8 = Path();
@@ -275,6 +278,7 @@ Paint paint_8_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=size.wid
 paint_8_stroke.color=Color(0xff276D4A).withOpacity(1.0);
 canvas.drawPath(path_8,paint_8_stroke);
 
+//black artifact
 Paint paint_8_fill = Paint()..style=PaintingStyle.fill;
 paint_8_fill.color = Color(0xff000000).withOpacity(0.0);
 canvas.drawPath(path_8,paint_8_fill);
@@ -293,6 +297,7 @@ Paint paint_9_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=size.wid
 paint_9_stroke.color=Color(0xff276D4A).withOpacity(1.0);
 canvas.drawPath(path_9,paint_9_stroke);
 
+//black artifact
 Paint paint_9_fill = Paint()..style=PaintingStyle.fill;
 paint_9_fill.color = Color(0xff000000).withOpacity(0.0);
 canvas.drawPath(path_9,paint_9_fill);
@@ -357,8 +362,9 @@ Path path_10 = Path();
     path_10.cubicTo(size.width*0.4159865,size.height*0.1562466,size.width*0.4171044,size.height*0.1566014,size.width*0.4184108,size.height*0.1566014);
     path_10.close();
 
+//LH10 Text
 Paint paint_10_fill = Paint()..style=PaintingStyle.fill;
-paint_10_fill.color = Colors.black.withOpacity(0.0);
+paint_10_fill.color = Colors.black.withOpacity(1.0);
 canvas.drawPath(path_10,paint_10_fill);
 
 Path path_11 = Path();
@@ -371,6 +377,7 @@ Paint paint_11_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=size.wi
 paint_11_stroke.color=Color(0xff276D4A).withOpacity(1.0);
 canvas.drawPath(path_11,paint_11_stroke);
 
+//black artifact
 Paint paint_11_fill = Paint()..style=PaintingStyle.fill;
 paint_11_fill.color = Color(0xff000000).withOpacity(0.0);
 canvas.drawPath(path_11,paint_11_fill);
@@ -437,8 +444,9 @@ Path path_12 = Path();
     path_12.lineTo(size.width*0.8224478,size.height*0.3960674);
     path_12.close();
 
+//LH12 text
 Paint paint_12_fill = Paint()..style=PaintingStyle.fill;
-paint_12_fill.color = Colors.black.withOpacity(0.0);
+paint_12_fill.color = Colors.black.withOpacity(1.0);
 canvas.drawPath(path_12,paint_12_fill);
 
 Path path_13 = Path();
@@ -454,6 +462,7 @@ Paint paint_13_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=size.wi
 paint_13_stroke.color=Color(0xff276D4A).withOpacity(1.0);
 canvas.drawPath(path_13,paint_13_stroke);
 
+//black artifact
 Paint paint_13_fill = Paint()..style=PaintingStyle.fill;
 paint_13_fill.color = Color(0xff000000).withOpacity(0.0);
 canvas.drawPath(path_13,paint_13_fill);
@@ -534,8 +543,9 @@ Path path_14 = Path();
     path_14.cubicTo(size.width*0.8376364,size.height*0.5674438,size.width*0.8360808,size.height*0.5677219,size.width*0.8343367,size.height*0.5677219);
     path_14.close();
 
+//LH13 black text
 Paint paint_14_fill = Paint()..style=PaintingStyle.fill;
-paint_14_fill.color = Colors.black.withOpacity(0.0);
+paint_14_fill.color = Colors.black.withOpacity(1.0);
 canvas.drawPath(path_14,paint_14_fill);
 
 Path path_15 = Path();
@@ -598,8 +608,9 @@ Path path_17 = Path();
     path_17.lineTo(size.width*0.8119461,size.height*0.9213483);
     path_17.close();
 
+//LH7 black text
 Paint paint_17_fill = Paint()..style=PaintingStyle.fill;
-paint_17_fill.color = Colors.black.withOpacity(0.0);
+paint_17_fill.color = Colors.black.withOpacity(1.0);
 canvas.drawPath(path_17,paint_17_fill);
 
 Path path_18 = Path();
@@ -694,8 +705,9 @@ Path path_19 = Path();
     path_19.cubicTo(size.width*0.4231111,size.height*0.7876292,size.width*0.4239798,size.height*0.7877893,size.width*0.4249596,size.height*0.7877893);
     path_19.close();
 
+//LH8 black text
 Paint paint_19_fill = Paint()..style=PaintingStyle.fill;
-paint_19_fill.color = Colors.black.withOpacity(0.0);
+paint_19_fill.color = Colors.black.withOpacity(1.0);
 canvas.drawPath(path_19,paint_19_fill);
 
 Path path_20 = Path();
@@ -765,8 +777,9 @@ Path path_20 = Path();
     path_20.cubicTo(size.width*0.2686364,size.height*0.5023455,size.width*0.2676367,size.height*0.5021067,size.width*0.2665145,size.height*0.5021067);
     path_20.close();
 
+//LH9 black text
 Paint paint_20_fill = Paint()..style=PaintingStyle.fill;
-paint_20_fill.color = Colors.black.withOpacity(0.0);
+paint_20_fill.color = Colors.black.withOpacity(1.0);
 canvas.drawPath(path_20,paint_20_fill);
 
 }
