@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:ucg/main.dart';
+import 'package:ucg/screens/search_screen/search_screen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -24,10 +25,7 @@ class AppRouter {
                 ));
 
       case "/search":
-        return MaterialPageRoute(
-            builder: (_) => MyWidget(
-                  name: settings.name!,
-                ));
+        return MaterialPageRoute(builder: (_) => const SearchScreen());
 
       case "/building":
         return MaterialPageRoute(
