@@ -1,6 +1,9 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:ucg/main.dart';
+import 'package:ucg/screens/map_screen/map_screen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -18,10 +21,7 @@ class AppRouter {
                 ));
 
       case "/map":
-        return MaterialPageRoute(
-            builder: (_) => MyWidget(
-                  name: settings.name!,
-                ));
+        return MaterialPageRoute(builder: (_) => const MapScreen());
 
       case "/search":
         return MaterialPageRoute(
@@ -61,7 +61,7 @@ class ErrorScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             TextButton(
-                onPressed: () => {Navigator.pushNamed(context, "/")},
+                onPressed: () => {Navigator.pushReplacementNamed(context, "/")},
                 child: const Text("Return to safety"))
           ],
         ),
