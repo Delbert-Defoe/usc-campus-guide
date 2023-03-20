@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.app_qr">
+    package="com.example.ucg">
    <application
-        android:label="app_qr"
+        android:label="ucg"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,6 +1,6 @@
 {
-    "name": "app_qr",
-    "short_name": "app_qr",
+    "name": "ucg",
+    "short_name": "ucg",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
