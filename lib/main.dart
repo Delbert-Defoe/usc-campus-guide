@@ -1,90 +1,66 @@
+import 'first.dart';
+import 'second.dart';
 import 'package:flutter/material.dart';
-import 'package:ucg/services/router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: "/",
+      home: Home(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class Home extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _HomeState createState() => _HomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  final pages = <Map<String, String>>[
-    {"pageTitle": "Onboarding", "route": "/onboarding"},
-    {"pageTitle": "Home", "route": "/"},
-    {"pageTitle": "Map", "route": "/map"},
-    {"pageTitle": "Search", "route": "/search"},
-    {"pageTitle": "Building", "route": "/building"},
-    {"pageTitle": "Qr Code", "route": "/scans"},
-  ];
-
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
-            child: FractionallySizedBox(
-          heightFactor: 0.6,
-          widthFactor: 0.8,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              ...pages
-                  .map((page) => ElevatedButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, page["route"]!),
-                      child: Text(page["pageTitle"]!)))
-                  .toList()
+          backgroundColor: Colors.indigo[900],
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(
+                  Icons.qr_code,
+                  size: 40,
+                ),
+              ),
+              Tab(
+                icon: Icon(
+                  Icons.qr_code_scanner,
+                  size: 40,
+                ),
+              ),
             ],
           ),
-        )) // This trailing comma makes auto-formatting nicer for build methods.
-        );
+          title: Text(
+            '  QR / Barcode Scanner',
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            First(),
+            Second(),
+          ],
+        ),
+      ),
+    );
   }
 }
