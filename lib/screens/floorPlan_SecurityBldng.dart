@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Auditorium',
+      title: 'Security Building',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
     double cpWidth = 400;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Auditorium"),
+        title: const Text("Security Building"),
         backgroundColor: Color.fromARGB(255, 28, 171, 52),
       ),
       body: Center(
