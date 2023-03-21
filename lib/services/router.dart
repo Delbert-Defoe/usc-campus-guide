@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:ucg/main.dart';
+import 'package:ucg/screens/home_screen/home_screen.dart';
 import 'package:ucg/screens/search_screen/search_screen.dart';
 
 class AppRouter {
@@ -38,6 +39,9 @@ class AppRouter {
             builder: (_) => MyWidget(
                   name: settings.name!,
                 ));
+
+      case "/home":
+        return MaterialPageRoute(builder: (_) => HomeScreen());
 
       default:
         return MaterialPageRoute(builder: (_) => const ErrorScreen());
