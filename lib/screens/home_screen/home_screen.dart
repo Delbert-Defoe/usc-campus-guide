@@ -76,7 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Positioned(
-            // learnaboutthebuildingsaroundyo (504:462)
             left: 16,
             top: 214,
             child: Align(
@@ -160,6 +159,139 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width: double.infinity,
                                       fit: BoxFit.cover,
                                     )),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 216,
+                        height: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 114,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                    width: 87,
+                                    height: double.infinity,
+                                    child: Material(
+                                      borderRadius: BorderRadius.circular(10),
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      child: InkWell(
+                                          onTap: () {},
+                                          child: Ink.image(
+                                            image: NetworkImage(
+                                                'https://toplist.info/images/800px/university-of-the-southern-caribbean-819839.jpg'),
+                                            height: 144,
+                                            width: double.infinity,
+                                            fit: BoxFit.cover,
+                                          )),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 121,
+                                    height: double.infinity,
+                                    child: Material(
+                                        borderRadius: BorderRadius.circular(10),
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        child: InkWell(
+                                            onTap: () {},
+                                            child: Ink.image(
+                                              image: NetworkImage(
+                                                  'https://toplist.info/images/800px/university-of-the-southern-caribbean-819839.jpg'),
+                                              height: 114,
+                                              width: double.infinity,
+                                              fit: BoxFit.cover,
+                                            ))),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              padding: EdgeInsets.fromLTRB(95, 35, 4, 35),
+                              child: Material(
+                                borderRadius: BorderRadius.circular(10),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: InkWell(
+                                    onTap: () {},
+                                    child: Ink.image(
+                                      image: NetworkImage(
+                                          'https://toplist.info/images/800px/university-of-the-southern-caribbean-819839.jpg'),
+                                      height: 88,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                    )),
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: SizedBox(
+                                    child: Container(
+                                      constraints: const BoxConstraints(
+                                        maxWidth: 116,
+                                      ),
+                                      child: Text(
+                                        'Explore USC’s Main Campus',
+                                        style: texttheme.bodyMedium,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 114,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                    width: 128,
+                                    height: double.infinity,
+                                    child: Material(
+                                      borderRadius: BorderRadius.circular(10),
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      child: InkWell(
+                                          onTap: () {},
+                                          child: Ink.image(
+                                            image: NetworkImage(
+                                                'https://toplist.info/images/800px/university-of-the-southern-caribbean-819839.jpg'),
+                                            height: 114,
+                                            width: double.infinity,
+                                            fit: BoxFit.cover,
+                                          )),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 80,
+                                    height: double.infinity,
+                                    child: Material(
+                                      borderRadius: BorderRadius.circular(10),
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      child: InkWell(
+                                          onTap: () {},
+                                          child: Ink.image(
+                                            image: NetworkImage(
+                                                'https://toplist.info/images/800px/university-of-the-southern-caribbean-819839.jpg'),
+                                            height: 114,
+                                            width: double.infinity,
+                                            fit: BoxFit.cover,
+                                          )),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
