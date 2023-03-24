@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             MaterialPageRoute(
                                 builder: (context) => const ErrorScreen()));
                       },
-                      child: Text('La Realista'),
+                      child: Text('USC Auditorium'),
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             MaterialPageRoute(
                                 builder: (context) => const ErrorScreen()));
                       },
-                      child: Text('USC Auditorium'),
+                      child: Text('School of Social Sciences'),
                     ),
                     ElevatedButton(
                       onPressed: () {
