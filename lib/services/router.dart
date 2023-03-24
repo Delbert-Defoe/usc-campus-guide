@@ -14,7 +14,7 @@ class AppRouter {
             builder: (_) => const MyHomePage(title: "Home"));
 
       case "/onboarding":
-        return MaterialPageRoute(builder: (_) => const OnBordingScreen());
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
 
       case "/map":
         return MaterialPageRoute(

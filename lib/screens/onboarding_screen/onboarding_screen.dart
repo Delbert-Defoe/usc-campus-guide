@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:ucg/models/onboarding_model.dart';
 
-
-
-
-class OnBordingScreen extends StatefulWidget {
-  const OnBordingScreen({super.key});
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
 
   @override
-  State<OnBordingScreen> createState() => _OnBordingScreenState();
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnBordingScreenState extends State<OnBordingScreen> {
-       final PageController _pageController= PageController();
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  final PageController _pageController = PageController();
 
-       int _pageIndex = 0;
+  int _pageIndex = 0;
 
-    @override
+  @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
@@ -23,78 +21,102 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final onboarding = Onboard.fetchAll();
     return Scaffold(
-      body:SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
+            Container(
+              child: Align(
+                alignment: Alignment.topRight,
+                child: TextButton(
+                  onPressed: () {},
+                  style:
+                      TextButton.styleFrom(backgroundColor: Color(0xFFFFFFFF)),
+                  child: Text(
+                    "Skip",
+                    style: TextStyle(
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Color(0xFF459E00)),
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: PageView.builder(
-                itemCount: demo_data.length,
+                itemCount: onboarding.length,
                 controller: _pageController,
-
-                onPageChanged: (index){
+                onPageChanged: (index) {
                   setState(() {
                     _pageIndex = index;
                   });
                 },
-
-
-                
-              itemBuilder: (context, index) =>Onbordingcontent(
-                image: demo_data[index].image,
-                title: demo_data[index].title,
-                description: demo_data[index].description,
-              ), 
-                  ),
+                itemBuilder: (context, index) => OnboardingContent(
+                  image: onboarding[index].image,
+                  title: onboarding[index].title,
+                  description: onboarding[index].description,
+                ),
+              ),
             ),
-
             Row(
               children: [
-               
-                 SizedBox(
-              height: 40,
-              width: 80,
-              child: ElevatedButton(
-                onPressed: () {if(
-                        _pageController.hasClients ){
-                          _pageController.previousPage(duration: Duration(milliseconds: 300 ), curve: Curves.ease);
-                        }} ,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.green
-                ),
-                child: Text("Back"),
-              )
-            ),
-                
-                   const Spacer(),              
-                ...List.generate(demo_data.length,(index)=>Padding(
-                  padding: EdgeInsets.only(right:4),
-                  child: DotIndicator(isActive: index == _pageIndex),
-                ),
-                
-                ),
-                 const Spacer(),
-                   SizedBox(
-                  height: 40,
-                  width: 80,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if(
-                        _pageController.hasClients ){
-                          _pageController.nextPage(duration: Duration(milliseconds: 300 ), curve: Curves.ease);
+                Container(
+                    margin: EdgeInsets.all(10),
+                    child: TextButton(
+                      onPressed: () {
+                        if (_pageController.hasClients) {
+                          _pageController.previousPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.ease);
                         }
-                    } ,
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green
-),
-                    child: Text("NEXT"),
-                  )
+                      },
+                      style: TextButton.styleFrom(
+                          backgroundColor: Color(0xFF459E00)),
+                      child: Text(
+                        "<",
+                        style: TextStyle(
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 28,
+                            color: Color(0xFFFFFFFF)),
+                      ),
+                    )),
+                const Spacer(),
+                ...List.generate(
+                  onboarding.length,
+                  (index) => Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: DotIndicator(isActive: index == _pageIndex),
+                  ),
                 ),
-               
+                const Spacer(),
+                Container(
+                    margin: EdgeInsets.all(10),
+                    child: TextButton(
+                      onPressed: () {
+                        if (_pageController.hasClients) {
+                          _pageController.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.ease);
+                        }
+                      },
+                      style: TextButton.styleFrom(
+                          backgroundColor: Color(0xFF459E00)),
+                      child: Text(
+                        ">",
+                        style: TextStyle(
+                            fontFamily: "Roboto",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 28,
+                            color: Color.fromARGB(255, 255, 255, 255)),
+                      ),
+                    )),
               ],
-             
             ),
-           
           ],
-        ) ,
+        ),
       ),
     );
   }
@@ -102,82 +124,61 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
 
 class DotIndicator extends StatelessWidget {
   const DotIndicator({
-    super.key, this.isActive =false,
+    super.key,
+    this.isActive = false,
   });
-final bool isActive;
+  final bool isActive;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: isActive ? 12:4,
-      width:4,
-      decoration: BoxDecoration(color: Colors.green,borderRadius: BorderRadius.all(Radius.circular(12)),
-       ),
+      height: isActive ? 12 : 4,
+      width: 4,
+      decoration: BoxDecoration(
+        color: Color(0xFF459E00),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
     );
   }
 }
 
-class Onboard{
-
-  final String image, title, description;
-
-  Onboard({required this.image, required this.title,required  this.description});
-
-
-}
-
-final List<Onboard>demo_data =[
-Onboard(image: "assets/onbordingscreen_assets/uscLogo.jpg", 
-       title: "WELCOM TO FIND USC", 
-       description: "The ap you use to find your way around campus as well as useing the app to serch up data on location"
-       ),
-       Onboard(image: "assets/onbordingscreen_assets/mapPlaceholder.jpg", 
-       title: "FIND LOCATIONS", 
-       description: "Dont know were your at usc the usc app to find diffrent location on campus"
-       ),
-
-       Onboard(image: "assets/onbordingscreen_assets/newBuilding.jpg", 
-       title: "Discriptions", 
-       description: "Usc the app to get discriptions on places and this on campus never will you feel like you do not know"
-       ),
-
-       Onboard(image: "assets/onbordingscreen_assets/QRCode.PNG", 
-       title: "QR COCE SCANING", 
-       description: "Useing state of the art tecnology to ge info jus scan the QR CODES that will be all around campus"
-       ),
-];
-
-class Onbordingcontent extends StatelessWidget {
-  const Onbordingcontent({
-    super.key, required this.image, required this.title, required this.description,
+class OnboardingContent extends StatelessWidget {
+  const OnboardingContent({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.description,
   });
 
-  final String image,title,description;
+  final String image, title, description;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-         const SizedBox(height: 50,),
+        const SizedBox(
+          height: 50,
+        ),
         Image.asset(
-          
           image,
-            height: 250,
-
+          height: 250,
         ),
-      const SizedBox(height: 40,),
+        const SizedBox(
+          height: 40,
+        ),
         Text(title,
-        textAlign: TextAlign.center,
-        style: Theme.of(context)
-        .textTheme
-        .headline5!
-        .copyWith(fontWeight: FontWeight.w500)
+            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .headline5!
+                .copyWith(fontWeight: FontWeight.w500)),
+        const SizedBox(
+          height: 20,
         ),
-        const SizedBox(height: 20,),
-    Text(description,
-        textAlign: TextAlign.center,
-        
-        ),  
-    const Spacer()       
+        Text(
+          description,
+          textAlign: TextAlign.center,
+        ),
+        const Spacer()
       ],
     );
   }
