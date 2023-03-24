@@ -23,20 +23,22 @@ class _HomeScreenState extends State<HomeScreen> {
               left: 16,
               top: 35,
               child: SizedBox(
-                width: screenWidth * 0.8,
-                height: screenHeight * 0.06,
+                width: 325,
+                height: 32,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(right: screenWidth * 0.15),
-                      child: Text(
-                        'Home',
-                        style: texttheme.bodyLarge,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 193),
+                        child: Text(
+                          'Home',
+                          style: texttheme.bodyLarge,
+                        ),
                       ),
                     ),
                     Container(
-                      constraints: BoxConstraints(maxWidth: screenWidth * 0.25),
+                      constraints: const BoxConstraints(maxWidth: 83),
                       child: Text(
                         'USC,\nMaracas Valley',
                         style: texttheme.bodySmall,
