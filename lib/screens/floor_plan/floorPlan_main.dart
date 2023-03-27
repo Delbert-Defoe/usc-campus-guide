@@ -1,4 +1,3 @@
-import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -61,68 +60,57 @@ import '../widgets/floorPlan_TheologyBldng.dart';
 //prefab
 import '../widgets/floorPlan_prefab.dart';
 
-
+import 'screen_switcher.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Color.fromARGB(0, 255, 255, 255)));
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: BottomTabBar(),
+      title: 'Page View Example',
+      home: ScreenSwitcher(
+        screens: [
+          floorPlan_AdminBldng_First_Floor(),
+          floorPlan_AdminBldng_GroundFloor(),
+          floorPlan_Auditorium(),
+        ],
+      ),
     );
   }
 }
 
-class BottomTabBar extends StatefulWidget {
-  BottomTabBar({Key? key}) : super(key: key);
-
-  @override
-  State<BottomTabBar> createState() => _BottomTabBarState();
-}
-
-class _BottomTabBarState extends State<BottomTabBar> {
-  int _index = 0;
-  final screens = [
-    HomePage(),
-    SearchPage(),
-    ProfilePage(),
-  ];
+class AdminBldng_First_Floor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: screens[_index],
+    return Container(
+      child: Center(
+        child: floorPlan_AdminBldng_First_Floor(),
+      ),
+    );
+  }
+}
 
-        bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _index,
-            onTap: (value) {
-              setState(() {
-                _index = value;
-              });
-            },
-            
-            backgroundColor: Color.fromARGB(255, 227, 227, 227),
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Boxicons.bx_home_circle),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Boxicons.bx_search),
-                label: 'Search',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Boxicons.bxs_user),
-                label: 'Profile',
-              )
-            ]));
+class AdminBldng_GroundFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_AdminBldng_GroundFloor(),
+      ),
+    );
+  }
+}
+
+class Auditorium extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_Auditorium(),
+      ),
+    );
   }
 }
