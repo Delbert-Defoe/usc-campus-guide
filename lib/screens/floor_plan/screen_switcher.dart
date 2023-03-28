@@ -85,7 +85,7 @@ class _ScreenSwitcherState extends State<ScreenSwitcher> {
 
   @override
   Widget build(BuildContext context) {
-    int index = 0;
+    int index = 4;
 
 
     return Scaffold(
