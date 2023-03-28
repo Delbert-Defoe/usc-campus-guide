@@ -15,8 +15,6 @@ class floorPlan_AdminBldng_First_Floor extends StatefulWidget {
 class _floorPlan_AdminBldng_First_FloorState extends State<floorPlan_AdminBldng_First_Floor> {
   double _scale = 1.0;
   double _previousScale = 1.0;
-  Offset _offset = Offset.zero;
-  Offset _previousOffset = Offset.zero;
 
   @override
   Widget build(BuildContext context) {
@@ -27,30 +25,19 @@ class _floorPlan_AdminBldng_First_FloorState extends State<floorPlan_AdminBldng_
         backgroundColor: Color.fromARGB(255, 28, 171, 52),
       ),
       body: GestureDetector(
-        
-        onPanUpdate: (DragUpdateDetails details) {
+        onScaleStart: (ScaleStartDetails details) {
           setState(() {
-            _offset += details.delta;
-            // Set limit for panning the widget
-            if (_offset.dx < -cpWidth * (_scale - 1) / _scale) {
-              _offset = Offset(-cpWidth * (_scale - 1) / _scale, _offset.dy);
-            }
-            if (_offset.dy < -cpWidth * 1.4135922330097086 * (_scale - 1) / _scale) {
-              _offset = Offset(_offset.dx, -cpWidth * 1.4135922330097086 * (_scale - 1) / _scale);
-            }
-            if (_offset.dx > cpWidth * (_scale - 1) / _scale) {
-              _offset = Offset(cpWidth * (_scale - 1) / _scale, _offset.dy);
-            }
-            if (_offset.dy > cpWidth * 1.4135922330097086 * (_scale - 1) / _scale) {
-              _offset = Offset(_offset.dx, cpWidth * 1.4135922330097086 * (_scale - 1) / _scale);
-            }
+            _previousScale = _scale;
+          });
+        },
+        onScaleUpdate: (ScaleUpdateDetails details) {
+          setState(() {
+            _scale = _previousScale * details.scale;
           });
         },
         child: Center(
-          child: Transform(
-            transform: Matrix4.identity()
-              ..translate(_offset.dx, _offset.dy)
-              ..scale(_scale),
+          child: Transform.scale(
+            scale: _scale,
             child: CustomPaint(
               size: Size(cpWidth, (cpWidth * 1.4135922330097086).toDouble()),
               painter: RPSCustomPainter(),
