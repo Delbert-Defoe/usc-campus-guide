@@ -58,8 +58,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Administration Building First Floor"),
-        backgroundColor: Color.fromARGB(255, 28, 171, 52),
+        title: const Text(
+          "Administration Building First Floor",
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Color.fromARGB(0, 255, 255, 255),
+        centerTitle: true,
+        elevation: 0,
       ),
       body: Center(
         child: GestureDetector(
