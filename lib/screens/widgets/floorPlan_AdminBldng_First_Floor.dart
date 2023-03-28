@@ -35,16 +35,7 @@ class _floorPlan_AdminBldng_First_FloorState extends State<floorPlan_AdminBldng_
         onScaleUpdate: (ScaleUpdateDetails details) {
           setState(() {
             _scale = _previousScale * details.scale;
-          });
-        },
-        onPanStart: (DragStartDetails details) {
-          setState(() {
-            _previousOffset = _offset;
-          });
-        },
-        onPanUpdate: (DragUpdateDetails details) {
-          setState(() {
-            _offset += details.delta;
+            _offset += details.focalPoint - details.localFocalPoint;
           });
         },
         child: Center(
