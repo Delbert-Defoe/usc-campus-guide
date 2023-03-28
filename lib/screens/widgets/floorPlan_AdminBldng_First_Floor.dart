@@ -7,47 +7,22 @@ void main() {
   runApp(floorPlan_AdminBldng_First_Floor());
 }
 */
-class floorPlan_AdminBldng_First_Floor extends StatefulWidget {
-  @override
-  _floorPlan_AdminBldng_First_FloorState createState() => _floorPlan_AdminBldng_First_FloorState();
-}
 
-class _floorPlan_AdminBldng_First_FloorState extends State<floorPlan_AdminBldng_First_Floor> {
-  double _scale = 1.0;
-  double _previousScale = 1.0;
-
+class floorPlan_AdminBldng_First_Floor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double cpWidth = 400;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Administration Building First Floor"),
-        backgroundColor: Color.fromARGB(255, 28, 171, 52),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Administration Building First Floor',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      body: GestureDetector(
-        onScaleStart: (ScaleStartDetails details) {
-          setState(() {
-            _previousScale = _scale;
-          });
-        },
-        onScaleUpdate: (ScaleUpdateDetails details) {
-          setState(() {
-            _scale = _previousScale * details.scale;
-          });
-        },
-        child: Center(
-          child: Transform.scale(
-            scale: _scale,
-            child: CustomPaint(
-              size: Size(cpWidth, (cpWidth * 1.4135922330097086).toDouble()),
-              painter: RPSCustomPainter(),
-            ),
-          ),
-        ),
-      ),
+      home: MyHomePage(),
     );
   }
 }
+
 
 class MyHomePage extends StatefulWidget {
   @override
