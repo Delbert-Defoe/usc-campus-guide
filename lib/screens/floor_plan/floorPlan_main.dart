@@ -43,7 +43,7 @@ import '../widgets/floorPlan_MusicOfficesAndLabs.dart';
 
 //science and technology
 import '../widgets/floorPlan_Science_and_Technology_Bldng_FirstFloor.dart';
-import '../widgets/floorPlan_Science_and_Technology_Bldng_GroundFloor copy.dart';
+import '../widgets/floorPlan_Science_and_Technology_Bldng_GroundFloor.dart';
 import '../widgets/floorPlan_Science_and_Technology_Bldng_TopFloor.dart';
 
 //security
@@ -75,8 +75,62 @@ class MyApp extends StatelessWidget {
         screens: [
           floorPlan_AdminBldng_First_Floor(),
           floorPlan_AdminBldng_GroundFloor(),
-          floorPlan_Auditorium(),
         ],
+        screens1: [
+          floorPlan_BusinessBlock_First_Floor_extension(),
+          floorPlan_BusinessBlock_First_Floor(),
+          floorPlan_BusinessBlock_Ground_Floor_extension(),
+          floorPlan_BusinessBlock_GroundFloor(),
+        ],
+        screens2: [
+          floorPlan_Science_and_Technology_Bldng_TopFloor(),
+          floorPlan_Science_and_Technology_Bldng_FirstFloor(),
+          floorPlan_Science_and_Technology_Bldng_GroundFloor(),
+        ],
+        screens3: [
+          floorPlan_SocialSciences_TopFloor(),
+          floorPlan_SocialSciences_FirstFloor(),
+          floorPlan_SocialSciences_GroundFloor(),
+        ],
+        screens4: [
+          floorPlan_Auditorium()
+        ],
+        screens5: [
+          floorPlan_Forde_Library_FirstFloor(),
+          floorPlan_Forde_Library_GroundFloor(),
+        ],
+        screens6: [
+          floorPlan_FordeResearchLibrary()
+        ],
+        screens7: [
+          floorPlan_HealthFoods()
+        ],
+        screens8: [
+          floorPlan_Humanities()
+        ],
+        screens9: [
+          floorPlan_KennedyArts_FirstFloor(),
+          floorPlan_KennedyArts_GroundFloor(),
+        ],
+        screens10: [
+          floorPlan_LaRealista()
+        ],
+        screens11: [
+          floorPlan_MusicAmpithetre()
+        ],
+        screens12: [
+          floorPlan_MusicOfficesAndLabs()
+        ],
+        screens13: [
+          floorPlan_prefab()
+        ],
+        screens14: [
+          floorPlan_SecurityBldng()
+        ],
+        screens15: [
+          floorPlan_TheologyBldng()
+        ],
+        
       ),
     );
   }
@@ -110,6 +164,259 @@ class Auditorium extends StatelessWidget {
     return Container(
       child: Center(
         child: floorPlan_Auditorium(),
+      ),
+    );
+  }
+}
+
+class BusinessBlock_First_Floor_extension extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_BusinessBlock_First_Floor_extension(),
+      ),
+    );
+  }
+}
+
+class BusinessBlock_First_Floor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_BusinessBlock_First_Floor(),
+      ),
+    );
+  }
+}
+
+class BusinessBlock_Ground_Floor_extension extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_BusinessBlock_Ground_Floor_extension(),
+      ),
+    );
+  }
+}
+
+class BusinessBlock_Ground_Floor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_BusinessBlock_GroundFloor(),
+      ),
+    );
+  }
+}
+
+class Forde_Library_FirstFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_Forde_Library_FirstFloor(),
+      ),
+    );
+  }
+}
+
+class Forde_Library_GroundFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_Forde_Library_GroundFloor(),
+      ),
+    );
+  }
+}
+
+class FordeResearchLibrary extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_FordeResearchLibrary(),
+      ),
+    );
+  }
+}
+
+class HealthFoods extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_HealthFoods(),
+      ),
+    );
+  }
+}
+
+class Humanities extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_Humanities(),
+      ),
+    );
+  }
+}
+
+class KennedyArts_FirstFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_KennedyArts_FirstFloor(),
+      ),
+    );
+  }
+}
+
+class KennedyArts_GroundFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_KennedyArts_GroundFloor(),
+      ),
+    );
+  }
+}
+
+class LaRealista extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_LaRealista(),
+      ),
+    );
+  }
+}
+
+class MusicAmpithetre extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_MusicAmpithetre(),
+      ),
+    );
+  }
+}
+
+class MusicOfficesAndLabs extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_MusicOfficesAndLabs(),
+      ),
+    );
+  }
+}
+
+class prefab extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_prefab(),
+      ),
+    );
+  }
+}
+
+class Science_and_Technology_Bldng_FirstFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_Science_and_Technology_Bldng_FirstFloor(),
+      ),
+    );
+  }
+}
+
+class Science_and_Technology_Bldng_GroundFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_Science_and_Technology_Bldng_GroundFloor(),
+      ),
+    );
+  }
+}
+
+class Science_and_Technology_Bldng_TopFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_Science_and_Technology_Bldng_TopFloor(),
+      ),
+    );
+  }
+}
+
+class SecurityBldng extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_SecurityBldng(),
+      ),
+    );
+  }
+}
+
+class SocialSciences_FirstFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_SocialSciences_FirstFloor(),
+      ),
+    );
+  }
+}
+
+class SocialSciences_GroundFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_SocialSciences_GroundFloor(),
+      ),
+    );
+  }
+}
+
+class SocialSciences_TopFloor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_SocialSciences_TopFloor(),
+      ),
+    );
+  }
+}
+
+class TheologyBldng extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: floorPlan_TheologyBldng(),
       ),
     );
   }
