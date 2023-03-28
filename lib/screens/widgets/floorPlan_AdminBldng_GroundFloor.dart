@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onScaleUpdate(ScaleUpdateDetails details) {
     setState(() {
       _scale = _previousScale * details.scale;
-      _translateOffset = _previousOffset +
+      _translateOffset = _previousOffset -
           (_startFocalPoint - details.focalPoint) / _scale;
     });
   }
