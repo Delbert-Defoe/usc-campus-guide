@@ -28,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  double cpWidth = 400;
+  double cpWidth = 300;
 
   // Zoom and pan variables
   double _scale = 1.0;
