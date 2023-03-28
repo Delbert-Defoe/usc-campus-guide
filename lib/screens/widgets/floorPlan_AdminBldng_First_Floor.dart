@@ -15,6 +15,8 @@ class floorPlan_AdminBldng_First_Floor extends StatefulWidget {
 class _floorPlan_AdminBldng_First_FloorState extends State<floorPlan_AdminBldng_First_Floor> {
   double _scale = 1.0;
   double _previousScale = 1.0;
+  Offset _offset = Offset.zero;
+  Offset _previousOffset = Offset.zero;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +37,21 @@ class _floorPlan_AdminBldng_First_FloorState extends State<floorPlan_AdminBldng_
             _scale = _previousScale * details.scale;
           });
         },
+        onPanStart: (DragStartDetails details) {
+          setState(() {
+            _previousOffset = _offset;
+          });
+        },
+        onPanUpdate: (DragUpdateDetails details) {
+          setState(() {
+            _offset += details.delta;
+          });
+        },
         child: Center(
-          child: Transform.scale(
-            scale: _scale,
+          child: Transform(
+            transform: Matrix4.identity()
+              ..translate(_offset.dx, _offset.dy)
+              ..scale(_scale),
             child: CustomPaint(
               size: Size(cpWidth, (cpWidth * 1.4135922330097086).toDouble()),
               painter: RPSCustomPainter(),
