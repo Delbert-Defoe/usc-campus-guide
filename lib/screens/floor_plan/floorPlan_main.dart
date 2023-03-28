@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Page View Example',
-      home: ScreenSwitcher(
+      home: screenSwitcher(
         screens: [
           floorPlan_AdminBldng_First_Floor(),
           floorPlan_AdminBldng_GroundFloor(),
