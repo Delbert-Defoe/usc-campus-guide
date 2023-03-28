@@ -87,13 +87,8 @@ class AdminBldng_First_Floor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-          child: InteractiveViewer(
-            child: floorPlan_AdminBldng_First_Floor(),
-            boundaryMargin: EdgeInsets.all(20),
-            minScale: 0.5,
-            maxScale: 2.0,
-          ),
-        ),
+        child: floorPlan_AdminBldng_First_Floor(),
+      ),
     );
   }
 }
