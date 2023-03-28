@@ -256,7 +256,7 @@ paint_5_stroke.color=Color(0xff17492C).withOpacity(1.0);
 canvas.drawPath(path_5,paint_5_stroke);
 
 Paint paint_5_fill = Paint()..style=PaintingStyle.fill;
-paint_5_fill.color = Color(0xff000000).withOpacity(1.0);
+paint_5_fill.color = Color(0xff000000).withOpacity(0.0);
 canvas.drawPath(path_5,paint_5_fill);
 
 Path path_6 = Path();
