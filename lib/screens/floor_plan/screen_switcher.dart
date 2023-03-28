@@ -40,23 +40,23 @@ class ScreenSwitcher extends StatefulWidget {
     required this.screens14,
     required this.screens15,
   }) : allScreens = [
-         screens,
-         screens1,
-         screens2,
-         screens3,
-         screens4,
-         screens5,
-         screens6,
-         screens7,
-         screens8,
-         screens9,
-         screens10,
-         screens11,
-         screens12,
-         screens13,
-         screens14,
-         screens15,
-       ];
+          screens,
+          screens1,
+          screens2,
+          screens3,
+          screens4,
+          screens5,
+          screens6,
+          screens7,
+          screens8,
+          screens9,
+          screens10,
+          screens11,
+          screens12,
+          screens13,
+          screens14,
+          screens15,
+        ];
 
   @override
   _ScreenSwitcherState createState() => _ScreenSwitcherState();
@@ -70,26 +70,28 @@ class _ScreenSwitcherState extends State<ScreenSwitcher> {
   void _incrementIndex() {
     setState(() {
       _currentIndex++;
-      _pageController.animateToPage(_currentIndex, duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+      _pageController.animateToPage(_currentIndex,
+          duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
     });
   }
 
   void _decrementIndex() {
     setState(() {
       _currentIndex--;
-      _pageController.animateToPage(_currentIndex, duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+      _pageController.animateToPage(_currentIndex,
+          duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     int index = 0;
 
-      return Scaffold(
+
+    return Scaffold(
       body: PageView(
-      children: widget.allScreens[index],
-      controller: _pageController,
+        children: widget.allScreens[index],
+        controller: _pageController,
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
@@ -101,7 +103,9 @@ class _ScreenSwitcherState extends State<ScreenSwitcher> {
             ),
             IconButton(
               icon: Icon(Icons.arrow_forward),
-              onPressed: _currentIndex == widget.allScreens[index].length - 1 ? null : _incrementIndex,
+              onPressed: _currentIndex == widget.allScreens[index].length - 1
+                  ? null
+                  : _incrementIndex,
             ),
           ],
         ),
