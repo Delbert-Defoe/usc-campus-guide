@@ -3,10 +3,10 @@ import 'package:ucg/main.dart';
 import 'dart:ui' as ui;
 
 void main() {
-  runApp(MyApp());
+  runApp(floorPlan_MusicOfficesAndLabs());
 }
 
-class MyApp extends StatelessWidget {
+class floorPlan_MusicOfficesAndLabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
