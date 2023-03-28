@@ -84,32 +84,46 @@ class _ScreenSwitcherState extends State<ScreenSwitcher> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    int index = 4;
+Widget build(BuildContext context) {
+  int index = 0;
 
-
-    return Scaffold(
-      body: PageView(
-        children: widget.allScreens[index],
-        controller: _pageController,
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: Icon(Icons.arrow_back),
+  return Scaffold(
+    body: PageView(
+      children: widget.allScreens[index],
+      controller: _pageController,
+    ),
+    bottomNavigationBar: BottomAppBar(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 69, 158, 0),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            //back arrow
+            child: IconButton(
+              icon: Icon(Icons.arrow_back_ios_sharp),
+              color: Colors.white,
               onPressed: _currentIndex == 0 ? null : _decrementIndex,
             ),
-            IconButton(
-              icon: Icon(Icons.arrow_forward),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 69, 158, 0),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.arrow_forward_ios_sharp),
+              color: Colors.white,
               onPressed: _currentIndex == widget.allScreens[index].length - 1
                   ? null
                   : _incrementIndex,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 }
