@@ -27,15 +27,23 @@ class _floorPlan_AdminBldng_First_FloorState extends State<floorPlan_AdminBldng_
         backgroundColor: Color.fromARGB(255, 28, 171, 52),
       ),
       body: GestureDetector(
-        onScaleStart: (ScaleStartDetails details) {
+        
+        onPanUpdate: (DragUpdateDetails details) {
           setState(() {
-            _previousScale = _scale;
-          });
-        },
-        onScaleUpdate: (ScaleUpdateDetails details) {
-          setState(() {
-            _scale = _previousScale * details.scale;
-            _offset += details.focalPoint - details.localFocalPoint;
+            _offset += details.delta;
+            // Set limit for panning the widget
+            if (_offset.dx < -cpWidth * (_scale - 1) / _scale) {
+              _offset = Offset(-cpWidth * (_scale - 1) / _scale, _offset.dy);
+            }
+            if (_offset.dy < -cpWidth * 1.4135922330097086 * (_scale - 1) / _scale) {
+              _offset = Offset(_offset.dx, -cpWidth * 1.4135922330097086 * (_scale - 1) / _scale);
+            }
+            if (_offset.dx > cpWidth * (_scale - 1) / _scale) {
+              _offset = Offset(cpWidth * (_scale - 1) / _scale, _offset.dy);
+            }
+            if (_offset.dy > cpWidth * 1.4135922330097086 * (_scale - 1) / _scale) {
+              _offset = Offset(_offset.dx, cpWidth * 1.4135922330097086 * (_scale - 1) / _scale);
+            }
           });
         },
         child: Center(
