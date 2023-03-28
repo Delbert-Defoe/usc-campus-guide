@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 int ScreenOption = 0;
 
-class ScreenSwitcher extends StatefulWidget {
+class screenSwitcher extends StatefulWidget {
   final List<Widget> screens;
   final List<Widget> screens1;
   final List<Widget> screens2;
@@ -22,7 +22,8 @@ class ScreenSwitcher extends StatefulWidget {
 
   final List<List<Widget>> allScreens;
 
-  ScreenSwitcher({
+
+  screenSwitcher({
     required this.screens,
     required this.screens1,
     required this.screens2,
@@ -62,8 +63,10 @@ class ScreenSwitcher extends StatefulWidget {
   _ScreenSwitcherState createState() => _ScreenSwitcherState();
 }
 
-class _ScreenSwitcherState extends State<ScreenSwitcher> {
+class _ScreenSwitcherState extends State<screenSwitcher> {
   int _currentIndex = 0;
+
+  
 
   PageController _pageController = PageController(initialPage: 0);
 
