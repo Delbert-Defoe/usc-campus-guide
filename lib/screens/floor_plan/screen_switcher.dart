@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-int ScreenOption = 0;
-
 class screenSwitcher extends StatefulWidget {
   final List<Widget> screens;
   final List<Widget> screens1;
@@ -65,7 +63,7 @@ class screenSwitcher extends StatefulWidget {
 
 class _ScreenSwitcherState extends State<screenSwitcher> {
   int _currentIndex = 0;
-
+  int index = 0;
   
 
   PageController _pageController = PageController(initialPage: 0);
@@ -86,10 +84,32 @@ class _ScreenSwitcherState extends State<screenSwitcher> {
     });
   }
 
+  void _buildingIncrement() {
+  if(index >= 0 && index != 15){
+    index++;
+  }
+
+  print(index);
+
+  _currentIndex = 0;
+  setState(() {});
+}
+
+void _buildingDecrement() {
+  if(index <= 15 && index != 0){
+    index--;
+  }
+
+  print(index);
+
+  _currentIndex = 0;
+  setState(() {});
+}
+
   @override
 Widget build(BuildContext context) {
-  int index = 0;
 
+ 
   return Scaffold(
     body: PageView(
       children: widget.allScreens[index],
@@ -109,6 +129,30 @@ Widget build(BuildContext context) {
               icon: Icon(Icons.arrow_back_ios_sharp),
               color: Colors.white,
               onPressed: _currentIndex == 0 ? null : _decrementIndex,
+            ),
+          ),
+          //decrement building
+          Container(
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(255, 89, 89, 0.663),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.gps_fixed_sharp),
+              color: Colors.white,
+              onPressed: _buildingDecrement,
+            ),
+          ),
+          //increment building
+          Container(
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(89, 89, 255, 0.665),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.gps_fixed_sharp),
+              color: Colors.white,
+              onPressed: _buildingIncrement,
             ),
           ),
           Container(
