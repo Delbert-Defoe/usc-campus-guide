@@ -28,25 +28,32 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  double _scale = 1.0;
-  Offset _translateOffset = Offset.zero;
-  Offset _startOffset = Offset.zero;
+  double cpWidth = 400;
 
+  // Zoom and pan variables
+  double _scale = 1.0;
+  double _previousScale = 1.0;
+  Offset _translateOffset = Offset.zero;
+  Offset _previousOffset = Offset.zero;
+  Offset _startFocalPoint = Offset.zero;
+
+  // Zoom and pan methods
   void _onScaleStart(ScaleStartDetails details) {
-    _startOffset = details.focalPoint;
+    _previousScale = _scale;
+    _previousOffset = _translateOffset;
+    _startFocalPoint = details.focalPoint;
   }
 
   void _onScaleUpdate(ScaleUpdateDetails details) {
     setState(() {
-      _scale = details.scale;
-      _translateOffset += (details.focalPoint - _startOffset) / _scale;
-      _startOffset = details.focalPoint;
+      _scale = _previousScale * details.scale;
+      _translateOffset = _previousOffset +
+          (_startFocalPoint - details.focalPoint) / _scale;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    double cpWidth = 400;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Administration Building Ground Floor"),
@@ -56,12 +63,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: GestureDetector(
           onScaleStart: _onScaleStart,
           onScaleUpdate: _onScaleUpdate,
-          child: CustomPaint(
-            size: Size(
-              cpWidth,
-              (cpWidth * 1.1986531986531987).toDouble(),
+          child: Transform(
+            transform: Matrix4.identity()
+              ..translate(_translateOffset.dx, _translateOffset.dy)
+              ..scale(_scale),
+            child: CustomPaint(
+              size: Size(cpWidth, (cpWidth * 1.1986531986531987).toDouble()),
+              painter: RPSCustomPainter(),
             ),
-            painter: RPSCustomPainter(),
           ),
         ),
       ),
