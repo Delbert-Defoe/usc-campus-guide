@@ -27,6 +27,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  double _scale = 1.0;
+  Offset _translateOffset = Offset.zero;
+  Offset _startOffset = Offset.zero;
+
+  void _onScaleStart(ScaleStartDetails details) {
+    _startOffset = details.focalPoint;
+  }
+
+  void _onScaleUpdate(ScaleUpdateDetails details) {
+    setState(() {
+      _scale = details.scale;
+      _translateOffset += (details.focalPoint - _startOffset) / _scale;
+      _startOffset = details.focalPoint;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double cpWidth = 400;
@@ -36,13 +53,18 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color.fromARGB(255, 28, 171, 52),
       ),
       body: Center(
+        child: GestureDetector(
+          onScaleStart: _onScaleStart,
+          onScaleUpdate: _onScaleUpdate,
           child: CustomPaint(
-        size: Size(
-            cpWidth,
-            (cpWidth * 1.1986531986531987)
-                .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-        painter: RPSCustomPainter(),
-      )),
+            size: Size(
+              cpWidth,
+              (cpWidth * 1.1986531986531987).toDouble(),
+            ),
+            painter: RPSCustomPainter(),
+          ),
+        ),
+      ),
     );
   }
 }
