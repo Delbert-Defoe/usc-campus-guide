@@ -27,22 +27,53 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  double cpWidth = 400;
+
+  // Zoom and pan variables
+  double _scale = 1.0;
+  double _previousScale = 1.0;
+  Offset _translateOffset = Offset.zero;
+  Offset _previousOffset = Offset.zero;
+  Offset _startFocalPoint = Offset.zero;
+
+  // Zoom and pan methods
+  void _onScaleStart(ScaleStartDetails details) {
+    _previousScale = _scale;
+    _previousOffset = _translateOffset;
+    _startFocalPoint = details.focalPoint;
+  }
+
+  void _onScaleUpdate(ScaleUpdateDetails details) {
+    setState(() {
+      _scale = _previousScale * details.scale;
+      _translateOffset = _previousOffset -
+          (_startFocalPoint - details.focalPoint) / _scale;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    double cpWidth = 400;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Business Block First Floor Extension- Floor Plan"),
+        title: const Text("Business Block First Floor Extension - Floor Plan"),
         backgroundColor: Color.fromARGB(255, 28, 171, 52),
       ),
       body: Center(
-          child: CustomPaint(
-        size: Size(
-            cpWidth,
-            (cpWidth * 1.1637010676156583)
-                .toDouble()),
-        painter: RPSCustomPainter(),
-      )),
+        child: GestureDetector(
+          onScaleStart: _onScaleStart,
+          onScaleUpdate: _onScaleUpdate,
+          child: Transform(
+            transform: Matrix4.identity()
+              ..translate(_translateOffset.dx, _translateOffset.dy)
+              ..scale(_scale),
+            child: CustomPaint(
+              size: Size(cpWidth, (cpWidth * 1.1637).toDouble()),
+              painter: RPSCustomPainter(),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
