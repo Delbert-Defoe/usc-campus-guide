@@ -20,7 +20,6 @@ class screenSwitcher extends StatefulWidget {
 
   final List<List<Widget>> allScreens;
 
-
   screenSwitcher({
     required this.screens,
     required this.screens1,
@@ -64,7 +63,6 @@ class screenSwitcher extends StatefulWidget {
 class _ScreenSwitcherState extends State<screenSwitcher> {
   int _currentIndex = 0;
   int index = 0;
-  
 
   PageController _pageController = PageController(initialPage: 0);
 
@@ -85,92 +83,90 @@ class _ScreenSwitcherState extends State<screenSwitcher> {
   }
 
   void _buildingIncrement() {
-  if(index >= 0 && index != 15){
-    index++;
+    if (index >= 0 && index != 15) {
+      index++;
+    }
+
+    print(index);
+
+    _currentIndex = 0;
+    setState(() {});
   }
 
-  print(index);
+  void _buildingDecrement() {
+    if (index <= 15 && index != 0) {
+      index--;
+    }
 
-  _currentIndex = 0;
-  setState(() {});
-}
+    print(index);
 
-void _buildingDecrement() {
-  if(index <= 15 && index != 0){
-    index--;
+    _currentIndex = 0;
+    setState(() {});
   }
-
-  print(index);
-
-  _currentIndex = 0;
-  setState(() {});
-}
 
   @override
-Widget build(BuildContext context) {
-
- 
-  return Scaffold(
-    body: PageView(
-      children: widget.allScreens[index],
-      controller: _pageController,
-    ),
-    bottomNavigationBar: BottomAppBar(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 69, 158, 0),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            //back arrow
-            child: IconButton(
-              icon: Icon(Icons.arrow_back_ios_sharp),
-              color: Colors.white,
-              onPressed: _currentIndex == 0 ? null : _decrementIndex,
-            ),
-          ),
-          //decrement building
-          Container(
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(255, 89, 89, 0.663),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: IconButton(
-              icon: Icon(Icons.gps_fixed_sharp),
-              color: Colors.white,
-              onPressed: _buildingDecrement,
-            ),
-          ),
-          //increment building
-          Container(
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(89, 89, 255, 0.665),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: IconButton(
-              icon: Icon(Icons.gps_fixed_sharp),
-              color: Colors.white,
-              onPressed: _buildingIncrement,
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 69, 158, 0),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: IconButton(
-              icon: Icon(Icons.arrow_forward_ios_sharp),
-              color: Colors.white,
-              onPressed: _currentIndex == widget.allScreens[index].length - 1
-                  ? null
-                  : _incrementIndex,
-            ),
-          ),
-        ],
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PageView(
+        children: widget.allScreens[index],
+        controller: _pageController,
       ),
-    ),
-  );
-}
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 69, 158, 0),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              //back arrow
+              child: IconButton(
+                icon: Icon(Icons.arrow_back_ios_sharp),
+                color: Colors.white,
+                onPressed: _currentIndex == 0 ? null : _decrementIndex,
+              ),
+            ),
+            //decrement building
+            Container(
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(255, 89, 89, 0.663),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.gps_fixed_sharp),
+                color: Colors.white,
+                onPressed: _buildingDecrement,
+              ),
+            ),
+            //increment building
+            Container(
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(89, 89, 255, 0.665),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.gps_fixed_sharp),
+                color: Colors.white,
+                onPressed: _buildingIncrement,
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 69, 158, 0),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.arrow_forward_ios_sharp),
+                color: Colors.white,
+                onPressed: _currentIndex == widget.allScreens[index].length - 1
+                    ? null
+                    : _incrementIndex,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
