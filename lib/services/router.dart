@@ -6,6 +6,7 @@ import 'package:ucg/main.dart';
 import 'package:ucg/screens/home_screen/home_screen.dart';
 import 'package:ucg/screens/map_screen/map_screen.dart';
 import 'package:ucg/screens/search_screen/search_screen.dart';
+import 'package:ucg/screens/onboarding_screen/onboarding_screen.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -17,10 +18,7 @@ class AppRouter {
             builder: (_) => const MyHomePage(title: "Home"));
 
       case "/onboarding":
-        return MaterialPageRoute(
-            builder: (_) => MyWidget(
-                  name: settings.name!,
-                ));
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
 
       case "/map":
         return MaterialPageRoute(builder: (_) => const MapScreen());

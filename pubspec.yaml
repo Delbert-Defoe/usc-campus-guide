@@ -59,9 +59,10 @@ flutter:
 
   assets:
     - assets/bgSearch.png
-    - assets/map.png
-    - assets/admin_bld.jpg
-    - assets/humanities_bld.jpg
+    - assets/onboardingscreen_assets/uscLogo.jpg
+    - assets/onboardingscreen_assets/mapPlaceholder.jpg
+    - assets/onboardingscreen_assets/newBuilding.jpg
+    - assets/onboardingscreen_assets/QRCode.PNG
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
