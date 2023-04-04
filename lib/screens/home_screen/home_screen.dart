@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ucg/services/router.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -9,312 +12,172 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final texttheme = Theme.of(context).textTheme;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          ContainerWidget(route: "/"),
-          ContainerWidget(route: "/onboarding"),
-          Positioned(
-            left: 16,
-            top: 35,
-            child: SizedBox(
-              width: 325,
-              height: 32,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(0, 0, 193, 0),
-                    child: Text(
-                      'Home',
-                      style: texttheme.bodyLarge,
-                    ),
-                  ),
-                  Container(
-                    constraints: const BoxConstraints(maxWidth: 83),
-                    child: Text(
-                      'USC,\nMaracas Valley',
-                      style: texttheme.bodySmall,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            left: 16,
-            top: 94,
-            child: TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, "/buildingscreen");
-              },
-              style: TextButton.styleFrom(
-                padding: EdgeInsets.zero,
-              ),
-              child: Container(
-                width: 328,
-                height: 104,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('map.png'),
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    'View Map',
-                    style: texttheme.bodyMedium,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 16,
-            top: 214,
-            child: Align(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Positioned(
+              left: 16,
+              top: 35,
               child: SizedBox(
-                width: 203,
+                width: 325,
                 height: 32,
-                child: Text(
-                    'Learn about the buildings around you, never get lost',
-                    style: texttheme.bodySmall),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 193),
+                        child: Text(
+                          'Home',
+                          style: texttheme.bodyLarge,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      constraints: const BoxConstraints(maxWidth: 83),
+                      child: Text(
+                        'USC,\nMaracas Valley',
+                        style: texttheme.bodySmall,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          Positioned(
-              left: 10,
-              top: 262,
-              child: SizedBox(
-                width: 328,
-                height: 439,
+            Positioned(
+              left: 16,
+              top: 94,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ErrorScreen()));
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                ),
                 child: Container(
-                  width: double.infinity,
-                  height: 358,
+                  width: screenWidth - 32,
+                  height: screenWidth / 3,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(screenWidth * 0.03),
+                    image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/map.png'),
+                    ),
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                        width: 104,
-                        height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Material(
-                              borderRadius: BorderRadius.circular(10),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, "/search");
-                                  },
-                                  child: Ink.image(
-                                    image: const AssetImage(
-                                        'assets/admin_bld.jpg'),
-                                    height: 88,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  )),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Material(
-                              borderRadius: BorderRadius.circular(10),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, "/search");
-                                  },
-                                  child: Ink.image(
-                                    image: const AssetImage(
-                                        'assets/humanities_bld.jpg'),
-                                    height: 166,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  )),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Material(
-                              borderRadius: BorderRadius.circular(10),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, "/search");
-                                  },
-                                  child: Ink.image(
-                                    image: const AssetImage(
-                                        'assets/humanities_bld.jpg'),
-                                    height: 88,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 216,
-                        height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: double.infinity,
-                              height: 114,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                    width: 87,
-                                    height: double.infinity,
-                                    child: Material(
-                                      borderRadius: BorderRadius.circular(10),
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context, "/home");
-                                          },
-                                          child: Ink.image(
-                                            image: const AssetImage(
-                                                'assets/admin_bld.jpg'),
-                                            height: 144,
-                                            width: double.infinity,
-                                            fit: BoxFit.cover,
-                                          )),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 121,
-                                    height: double.infinity,
-                                    child: Material(
-                                        borderRadius: BorderRadius.circular(10),
-                                        clipBehavior:
-                                            Clip.antiAliasWithSaveLayer,
-                                        child: InkWell(
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                  context, "/home");
-                                            },
-                                            child: Ink.image(
-                                              image: const AssetImage(
-                                                  'assets/humanities_bld.jpg'),
-                                              height: 114,
-                                              width: double.infinity,
-                                              fit: BoxFit.cover,
-                                            ))),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Material(
-                                borderRadius: BorderRadius.circular(10),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: InkWell(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, "/");
-                                    },
-                                    child: Ink.image(
-                                      image: const AssetImage(
-                                          'assets/bgSearch.png'),
-                                      height: 114,
-                                      width: double.infinity,
-                                      fit: BoxFit.cover,
-                                      child: Align(
-                                        // exploreuscsmaincampusz69 (501:435)
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                          child: Container(
-                                            constraints: const BoxConstraints(
-                                              maxWidth: 116,
-                                            ),
-                                            child: Text(
-                                              'Explore USC’s Main Campus',
-                                              style: texttheme.bodyMedium,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 114,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                    width: 128,
-                                    height: double.infinity,
-                                    child: Material(
-                                      borderRadius: BorderRadius.circular(10),
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context, "/home");
-                                          },
-                                          child: Ink.image(
-                                            image: const AssetImage(
-                                                'assets/admin_bld.jpg'),
-                                            height: 114,
-                                            width: double.infinity,
-                                            fit: BoxFit.cover,
-                                          )),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 80,
-                                    height: double.infinity,
-                                    child: Material(
-                                      borderRadius: BorderRadius.circular(10),
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context, "/home");
-                                          },
-                                          child: Ink.image(
-                                            image: const AssetImage(
-                                                'assets/humanities_bld.jpg'),
-                                            height: 114,
-                                            width: double.infinity,
-                                            fit: BoxFit.cover,
-                                          )),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  child: Center(
+                    child: Text(
+                      'View Map',
+                      style: texttheme.bodyMedium,
+                    ),
                   ),
                 ),
-              )),
-        ],
+              ),
+            ),
+            Positioned(
+              left: 16,
+              top: 94 + screenWidth / 3 + 16,
+              child: Align(
+                child: SizedBox(
+                  width: screenWidth * 0.6,
+                  height: screenHeight * 0.06,
+                  child: Text(
+                      'Learn about the buildings around you, \nnever get lost',
+                      style: texttheme.bodySmall),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              top: 84 + screenWidth / 3 + 16 + screenHeight * 0.06 + 16,
+              child: SizedBox(
+                width: screenWidth,
+                height: screenHeight -
+                    (94 + screenWidth / 3 + 16 + screenHeight * 0.06 + 16),
+                child: GridView.count(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  padding: const EdgeInsets.all(16),
+                  childAspectRatio: 1,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ErrorScreen()));
+                      },
+                      child: Text('Admin'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ErrorScreen()));
+                      },
+                      child: Text('USC Auditorium'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ErrorScreen()));
+                      },
+                      child: Text('School of Social Sciences'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ErrorScreen()));
+                      },
+                      child: Text('School of Business'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ErrorScreen()));
+                      },
+                      child: Text('School of Sci and Tech'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ErrorScreen()));
+                      },
+                      child: Text('School of Theolgy'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ErrorScreen()));
+                      },
+                      child: Text('School of Humanities'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
