@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ucg/models/building.dart';
 import 'package:ucg/models/location.dart';
+import 'package:ucg/models/room.dart';
+import 'package:ucg/providers/map_provider.dart';
 
 class SearchComponent extends StatefulWidget {
   const SearchComponent({super.key});
@@ -10,21 +14,6 @@ class SearchComponent extends StatefulWidget {
 
 class SearchComponentState extends State<SearchComponent> {
   late TextEditingController textController;
-
-  final results = <Result>[
-    Result(
-        name: "LH1",
-        resultType: ResultType.ROOM,
-        buildingName: "Administration Block",
-        street: "Campus Street",
-        longLat: {
-          "lat": 10.692556,
-          "long": -61.407722,
-        })
-  ];
-
-  List searchResults = <Result>[];
-  Result? activeResultCard;
 
   @override
   void initState() {
@@ -39,77 +28,85 @@ class SearchComponentState extends State<SearchComponent> {
     final theme = Theme.of(context);
     final texttheme = Theme.of(context).textTheme;
 
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.only(top: 40, bottom: 24),
-      constraints: const BoxConstraints.expand(),
-      child: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
+    return Consumer<MapProvider>(
+      builder: (context, provider, child) {
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.only(top: 40, bottom: 24),
+          constraints: const BoxConstraints.expand(),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Material(
-                    borderRadius: BorderRadius.circular(10),
-                    elevation: 10,
-                    color: Colors.white,
-                    child: IconButton(
-                        style: IconButton.styleFrom(
-                            fixedSize: const Size(44, 44),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                        padding: const EdgeInsets.all(8),
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(
-                          Icons.chevron_left,
-                          color: Color(0xFF595959),
-                        )),
+                  Row(
+                    children: <Widget>[
+                      Material(
+                        borderRadius: BorderRadius.circular(10),
+                        elevation: 10,
+                        color: Colors.white,
+                        child: IconButton(
+                            style: IconButton.styleFrom(
+                                fixedSize: const Size(44, 44),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            padding: const EdgeInsets.all(8),
+                            onPressed: () => Navigator.pop(context),
+                            icon: const Icon(
+                              Icons.chevron_left,
+                              color: Color(0xFF595959),
+                            )),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                          child: Material(
+                        elevation: 10,
+                        shadowColor: Colors.black.withOpacity(0.25),
+                        // borderRadius: BorderRadius.circular(20),
+                        color: Colors.transparent,
+                        child: TextField(
+                          controller: textController,
+                          onChanged: (text) => provider.getSearchResults(text),
+                          style: texttheme.bodyMedium,
+                          decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(16),
+                              hintText:
+                                  "Search for a building, class or office",
+                              hintStyle: texttheme.bodyMedium!
+                                  .copyWith(color: theme.disabledColor),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide.none)),
+                        ),
+                      )),
+                    ],
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                      child: Material(
-                    elevation: 10,
-                    shadowColor: Colors.black.withOpacity(0.25),
-                    // borderRadius: BorderRadius.circular(20),
-                    color: Colors.transparent,
-                    child: TextField(
-                      controller: textController,
-                      onChanged: (text) => _getResults(text),
-                      style: texttheme.bodyMedium,
-                      decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(16),
-                          hintText: "Search for a building, class or office",
-                          hintStyle: texttheme.bodyMedium!
-                              .copyWith(color: theme.disabledColor),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide.none)),
-                    ),
-                  ))
+                  const SizedBox(height: 24),
+                  Text(
+                    "Results",
+                    style: texttheme.bodySmall,
+                  ),
+                  const SizedBox(height: 24),
+                  if (provider.searchResults.isNotEmpty)
+                    ...provider.searchResults
+                        .map((result) => Container(
+                            margin: const EdgeInsets.only(bottom: 16),
+                            child: _getResultCard(context, result)))
+                        .toList()
                 ],
               ),
-              const SizedBox(height: 24),
-              Text(
-                "Results",
-                style: texttheme.bodySmall,
-              ),
-              const SizedBox(height: 24),
-              if (searchResults.isNotEmpty)
-                ...searchResults
-                    .map((result) => _getResultCard(context, result))
-                    .toList()
+              provider.activeResult == null
+                  ? Container()
+                  : Align(
+                      alignment: Alignment.bottomCenter,
+                      child:
+                          _getActiveSearchCard(context, provider.activeResult!))
             ],
           ),
-          activeResultCard == null
-              ? Container()
-              : Align(
-                  alignment: Alignment.bottomCenter,
-                  child: _getActiveSearchCard(context))
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -119,34 +116,30 @@ class SearchComponentState extends State<SearchComponent> {
     super.dispose();
   }
 
-  void _getResults(String? text) {
-    if (text == "") {
-      setState(() {
-        searchResults = [];
-      });
-    } else {
-      setState(() {
-        searchResults = results
-            .where((result) =>
-                result.name.toLowerCase().contains(RegExp(text!.toLowerCase())))
-            .toList();
-      });
-    }
-  }
-
-  Widget _getResultCard(BuildContext context, Result result) {
+  Widget _getResultCard(BuildContext context, Location result) {
     ThemeData theme = Theme.of(context);
 
+    String subtitle;
+    final provider = Provider.of<MapProvider>(context, listen: false);
+
+    if (result is Room) {
+      subtitle = provider.getBuildingName(result.buildingID);
+    } else if (result is Building) {
+      subtitle = result.streetname;
+    } else {
+      subtitle = "";
+    }
+
     return TweenAnimationBuilder(
-      tween: Tween<double>(begin: 0, end: 1),
-      duration: Duration(milliseconds: 250),
-      builder: (context, val, child) {
-        return Opacity(opacity: val, child: child);
-      },
-      child: Material(
-        elevation: 10,
-        borderRadius: BorderRadius.circular(10),
-        child: ListTile(
+        tween: Tween<double>(begin: 0, end: 1),
+        duration: Duration(milliseconds: 250),
+        builder: (context, val, child) {
+          return Opacity(opacity: val, child: child);
+        },
+        child: Material(
+          elevation: 10,
+          borderRadius: BorderRadius.circular(10),
+          child: ListTile(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             //selected: true,
@@ -158,38 +151,20 @@ class SearchComponentState extends State<SearchComponent> {
                     .copyWith(color: theme.primaryColor)),
             subtitle: Padding(
                 padding: const EdgeInsets.only(top: 8),
-                child: getSubtitle(result, context)),
+                child: Text(
+                  subtitle,
+                  style: theme.textTheme.bodySmall,
+                )),
             trailing: Icon(
               Icons.info_outline,
               color: theme.primaryColor,
             ),
-            onTap: () => setState(() {
-                  activeResultCard = result;
-                  searchResults = [];
-                })),
-      ),
-    );
+            onTap: () => provider.setActiveResult(result),
+          ),
+        ));
   }
 
-  Text getSubtitle(Result result, BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-
-    switch (result.resultType) {
-      case ResultType.BUILDING:
-        return Text(
-          result.street!,
-          style: themeData.textTheme.bodySmall,
-        );
-
-      case ResultType.ROOM:
-        return Text(
-          result.buildingName!,
-          style: themeData.textTheme.bodySmall,
-        );
-    }
-  }
-
-  Widget _getActiveSearchCard(BuildContext context) {
+  Widget _getActiveSearchCard(BuildContext context, Building activeResult) {
     ThemeData theme = Theme.of(context);
 
     return TweenAnimationBuilder(
@@ -224,7 +199,7 @@ class SearchComponentState extends State<SearchComponent> {
                   width: 8,
                 ),
                 Text(
-                  activeResultCard!.name,
+                  activeResult.name,
                   style: theme.textTheme.bodySmall!
                       .copyWith(color: theme.primaryColor),
                 )
@@ -232,7 +207,7 @@ class SearchComponentState extends State<SearchComponent> {
             ),
             const SizedBox(height: 8),
             Text(
-              activeResultCard!.street!,
+              activeResult.streetname,
               style: theme.textTheme.bodySmall,
             ),
             const SizedBox(height: 16),

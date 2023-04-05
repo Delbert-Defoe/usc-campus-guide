@@ -8,9 +8,10 @@ class Room extends Location {
   RoomType type;
 
   Room(
-      String id,
-      String name, 
-      this.buildingID,
-      this.floorLevel,
-      this.type}) : super (id: id, name: name);
+      {required String id,
+      required String name,
+      required this.buildingID,
+      required this.floorLevel,
+      required this.type})
+      : super(id: id, name: name);
 }

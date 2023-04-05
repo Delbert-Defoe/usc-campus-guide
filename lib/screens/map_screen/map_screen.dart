@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ucg/providers/map_provider.dart';
 import 'package:ucg/screens/map_screen/widgets/map_component.dart';
 import 'package:ucg/screens/map_screen/widgets/search_component.dart';
 
@@ -18,8 +20,11 @@ class _MapScreenState extends State<MapScreen> {
       backgroundColor: theme.scaffoldBackgroundColor,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Stack(
-          children: const <Widget>[MapComponent(), SearchComponent()],
+        child: ChangeNotifierProvider(
+          create: (context) => MapProvider(),
+          child: Stack(
+            children: const <Widget>[MapComponent(), SearchComponent()],
+          ),
         ),
       ),
     );

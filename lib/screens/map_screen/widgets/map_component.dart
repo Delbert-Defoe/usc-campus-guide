@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:ucg/providers/map_provider.dart';
 
 class MapComponent extends StatefulWidget {
   const MapComponent({super.key});
@@ -24,6 +26,8 @@ class _MapComponentState extends State<MapComponent> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<MapProvider>(context, listen: false).activeResult;
+
     return const GoogleMap(
       mapType: MapType.normal,
       initialCameraPosition: _kcameraPosition,
