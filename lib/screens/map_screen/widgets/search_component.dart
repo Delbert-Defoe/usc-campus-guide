@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucg/models/location.dart';
 
 class SearchComponent extends StatefulWidget {
   const SearchComponent({super.key});
@@ -8,6 +9,29 @@ class SearchComponent extends StatefulWidget {
 }
 
 class SearchComponentState extends State<SearchComponent> {
+  late TextEditingController textController;
+
+  final results = <Result>[
+    Result(
+        name: "LH1",
+        resultType: ResultType.ROOM,
+        buildingName: "Administration Block",
+        street: "Campus Street",
+        longLat: {
+          "lat": 10.692556,
+          "long": -61.407722,
+        })
+  ];
+
+  List searchResults = <Result>[];
+  Result? activeResultCard;
+
+  @override
+  void initState() {
+    textController = TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // final devHeight = MediaQuery.of(context).size.height;
@@ -50,6 +74,8 @@ class SearchComponentState extends State<SearchComponent> {
                     // borderRadius: BorderRadius.circular(20),
                     color: Colors.transparent,
                     child: TextField(
+                      controller: textController,
+                      onChanged: (text) => _getResults(text),
                       style: texttheme.bodyMedium,
                       decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(16),
@@ -71,91 +97,150 @@ class SearchComponentState extends State<SearchComponent> {
                 style: texttheme.bodySmall,
               ),
               const SizedBox(height: 24),
-              _getResultCard(context),
+              if (searchResults.isNotEmpty)
+                ...searchResults
+                    .map((result) => _getResultCard(context, result))
+                    .toList()
             ],
           ),
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: _getActiveSearchCard(context))
+          activeResultCard == null
+              ? Container()
+              : Align(
+                  alignment: Alignment.bottomCenter,
+                  child: _getActiveSearchCard(context))
         ],
       ),
     );
   }
 
-  Widget _getResultCard(BuildContext context) {
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  void _getResults(String? text) {
+    if (text == "") {
+      setState(() {
+        searchResults = [];
+      });
+    } else {
+      setState(() {
+        searchResults = results
+            .where((result) =>
+                result.name.toLowerCase().contains(RegExp(text!.toLowerCase())))
+            .toList();
+      });
+    }
+  }
+
+  Widget _getResultCard(BuildContext context, Result result) {
     ThemeData theme = Theme.of(context);
 
-    return Material(
-      elevation: 10,
-      borderRadius: BorderRadius.circular(10),
-      child: ListTile(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        //selected: true,
-        //tileColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-        title: Text("School of Social Sciences",
-            style:
-                theme.textTheme.bodyLarge!.copyWith(color: theme.primaryColor)),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: Text(
-            "Campus Boulevard",
-            style: theme.textTheme.bodySmall,
-          ),
-        ),
-        trailing: Icon(
-          Icons.info_outline,
-          color: theme.primaryColor,
-        ),
+    return TweenAnimationBuilder(
+      tween: Tween<double>(begin: 0, end: 1),
+      duration: Duration(milliseconds: 250),
+      builder: (context, val, child) {
+        return Opacity(opacity: val, child: child);
+      },
+      child: Material(
+        elevation: 10,
+        borderRadius: BorderRadius.circular(10),
+        child: ListTile(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            //selected: true,
+            //tileColor: Colors.white,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+            title: Text(result.name,
+                style: theme.textTheme.bodyLarge!
+                    .copyWith(color: theme.primaryColor)),
+            subtitle: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: getSubtitle(result, context)),
+            trailing: Icon(
+              Icons.info_outline,
+              color: theme.primaryColor,
+            ),
+            onTap: () => setState(() {
+                  activeResultCard = result;
+                  searchResults = [];
+                })),
       ),
     );
+  }
+
+  Text getSubtitle(Result result, BuildContext context) {
+    ThemeData themeData = Theme.of(context);
+
+    switch (result.resultType) {
+      case ResultType.BUILDING:
+        return Text(
+          result.street!,
+          style: themeData.textTheme.bodySmall,
+        );
+
+      case ResultType.ROOM:
+        return Text(
+          result.buildingName!,
+          style: themeData.textTheme.bodySmall,
+        );
+    }
   }
 
   Widget _getActiveSearchCard(BuildContext context) {
     ThemeData theme = Theme.of(context);
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                offset: const Offset(0, 10),
-                blurRadius: 10,
-                color: theme.shadowColor.withOpacity(0.1))
-          ]),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: <Widget>[
-              Icon(
-                Icons.info_outline,
-                color: theme.primaryColor,
-                size: 14,
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                "School of Science and Technology",
+    return TweenAnimationBuilder(
+      tween: Tween<double>(begin: 0, end: 1),
+      duration: Duration(milliseconds: 250),
+      builder: (context, val, child) {
+        return Opacity(opacity: val, child: child);
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  offset: const Offset(0, 10),
+                  blurRadius: 10,
+                  color: theme.shadowColor.withOpacity(0.1))
+            ]),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: <Widget>[
+                Icon(
+                  Icons.info_outline,
+                  color: theme.primaryColor,
+                  size: 14,
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  activeResultCard!.name,
+                  style: theme.textTheme.bodySmall!
+                      .copyWith(color: theme.primaryColor),
+                )
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              activeResultCard!.street!,
+              style: theme.textTheme.bodySmall,
+            ),
+            const SizedBox(height: 16),
+            Text("Tap to view more information",
                 style: theme.textTheme.bodySmall!
-                    .copyWith(color: theme.primaryColor),
-              )
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            "Campus Boulevard",
-            style: theme.textTheme.bodySmall,
-          ),
-          const SizedBox(height: 16),
-          Text("Tap to view more information",
-              style: theme.textTheme.bodySmall!
-                  .copyWith(color: theme.disabledColor)),
-        ],
+                    .copyWith(color: theme.disabledColor)),
+          ],
+        ),
       ),
     );
   }
