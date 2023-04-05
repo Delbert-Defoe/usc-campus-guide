@@ -89,12 +89,14 @@ class SearchComponentState extends State<SearchComponent> {
                     style: texttheme.bodySmall,
                   ),
                   const SizedBox(height: 24),
-                  if (provider.searchResults.isNotEmpty)
-                    ...provider.searchResults
-                        .map((result) => Container(
-                            margin: const EdgeInsets.only(bottom: 16),
-                            child: _getResultCard(context, result)))
-                        .toList()
+                  ListView(children: [
+                    if (provider.searchResults.isNotEmpty)
+                      ...provider.searchResults
+                          .map((result) => Container(
+                              margin: const EdgeInsets.only(bottom: 16),
+                              child: _getResultCard(context, result)))
+                          .toList()
+                  ])
                 ],
               ),
               provider.activeResult == null
