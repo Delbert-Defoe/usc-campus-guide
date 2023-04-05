@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:ucg/main.dart';
+import 'package:ucg/screens/floor_plan/floorPlan_main.dart';
 import 'package:ucg/screens/home_screen/home_screen.dart';
 import 'package:ucg/screens/map_screen/map_screen.dart';
 import 'package:ucg/screens/search_screen/search_screen.dart';
@@ -27,10 +28,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SearchScreen());
 
       case "/building":
-        return MaterialPageRoute(
-            builder: (_) => MyWidget(
-                  name: settings.name!,
-                ));
+        return MaterialPageRoute(builder: (_) => FloorPlanView());
 
       case "/scan":
         return MaterialPageRoute(

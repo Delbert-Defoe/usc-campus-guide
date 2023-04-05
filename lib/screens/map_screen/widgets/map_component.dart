@@ -29,6 +29,7 @@ class _MapComponentState extends State<MapComponent> {
       initialCameraPosition: _kcameraPosition,
       zoomControlsEnabled: false,
       compassEnabled: false,
+
       // onMapCreated: (GoogleMapController controller) {
       //   _controller.complete(controller);
       // },
