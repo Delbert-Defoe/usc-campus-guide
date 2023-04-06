@@ -185,188 +185,199 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        height: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: double.infinity,
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.3,
-                                    height: double.infinity,
-                                    child: Material(
-                                      borderRadius: BorderRadius.circular(10),
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const ErrorScreen()));
-                                        },
-                                        child: Ink.image(
-                                          image: const AssetImage(
-                                              'assets/admin_bld.jpg'),
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.2,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.3, // set a fixed width
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.3,
-                                    height: double.infinity,
-                                    child: Material(
+                      Flexible(
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          height: double.infinity,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: double.infinity,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.15,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin:
+                                          const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.3,
+                                      height: double.infinity,
+                                      child: Material(
                                         borderRadius: BorderRadius.circular(10),
                                         clipBehavior:
                                             Clip.antiAliasWithSaveLayer,
                                         child: InkWell(
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const ErrorScreen()));
-                                            },
-                                            child: Ink.image(
-                                              image: const AssetImage(
-                                                  'assets/newBuilding.jpg'),
-                                              height: 114,
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.3,
-                                              fit: BoxFit.cover,
-                                            ))),
-                                  ),
-                                ],
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const ErrorScreen()));
+                                          },
+                                          child: Ink.image(
+                                            image: const AssetImage(
+                                                'assets/admin_bld.jpg'),
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.2,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.3, // set a fixed width
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.3,
+                                      height: double.infinity,
+                                      child: Material(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          child: InkWell(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const ErrorScreen()));
+                                              },
+                                              child: Ink.image(
+                                                image: const AssetImage(
+                                                    'assets/newBuilding.jpg'),
+                                                height: 114,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.3,
+                                                fit: BoxFit.cover,
+                                              ))),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Container(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Material(
-                                borderRadius: BorderRadius.circular(10),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => ErrorScreen()),
-                                    );
-                                  },
-                                  child: Ink.image(
-                                    image:
-                                        const AssetImage('assets/bgSearch.png'),
-                                    height: MediaQuery.of(context).size.height *
-                                        0.16,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.6,
-                                    fit: BoxFit.cover,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        child: Text(
-                                          'Explore USC’s Main Campus',
-                                          style: texttheme.bodyLarge,
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Container(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: Material(
+                                  borderRadius: BorderRadius.circular(10),
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ErrorScreen()),
+                                      );
+                                    },
+                                    child: Ink.image(
+                                      image: const AssetImage(
+                                          'assets/bgSearch.png'),
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.16,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.62,
+                                      fit: BoxFit.cover,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.3,
+                                          child: Text(
+                                            'Explore USC’s Main Campus',
+                                            style: texttheme.bodyLarge,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            SizedBox(
-                              width: double.infinity,
-                              height: MediaQuery.of(context).size.height * 0.16,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                    width: MediaQuery.of(context).size.width *
-                                        0.38,
-                                    height: double.infinity,
-                                    child: Material(
-                                      borderRadius: BorderRadius.circular(10),
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ErrorScreen(),
-                                            ),
-                                          );
-                                        },
-                                        child: Ink.image(
-                                          image: const AssetImage(
-                                              'assets/auditorium.jpg'),
-                                          width: double.infinity,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.2,
-                                    height: double.infinity,
-                                    child: Material(
-                                      borderRadius: BorderRadius.circular(10),
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ErrorScreen(),
-                                            ),
-                                          );
-                                        },
-                                        child: Ink.image(
-                                          image: const AssetImage(
-                                              'assets/fordeLibrary.jpg'),
-                                          width: double.infinity,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                              const SizedBox(
+                                height: 8,
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                width: double.infinity,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.16,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin:
+                                          const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.38,
+                                      height: double.infinity,
+                                      child: Material(
+                                        borderRadius: BorderRadius.circular(10),
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const ErrorScreen(),
+                                              ),
+                                            );
+                                          },
+                                          child: Ink.image(
+                                            image: const AssetImage(
+                                                'assets/auditorium.jpg'),
+                                            width: double.infinity,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.22,
+                                      height: double.infinity,
+                                      child: Material(
+                                        borderRadius: BorderRadius.circular(10),
+                                        clipBehavior:
+                                            Clip.antiAliasWithSaveLayer,
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const ErrorScreen(),
+                                              ),
+                                            );
+                                          },
+                                          child: Ink.image(
+                                            image: const AssetImage(
+                                                'assets/fordeLibrary.jpg'),
+                                            width: double.infinity,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
