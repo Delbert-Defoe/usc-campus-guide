@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ucg/screens/floor_plan/test_cases.dart';
 import '../floor_plan/floorPlan_main.dart';
-import 'package:ucg/screensfloor_plan/screen_switcher.dart';
+import 'package:ucg/screens/floor_plan/screen_switcher.dart';
 
 void main() => runApp(BSS());
 
 class BSS extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,38 +16,35 @@ class BSS extends StatelessWidget {
       ),
     );
   }
-
 }
 
 class SearchBox extends StatefulWidget {
-
   @override
   _SearchBoxState createState() => _SearchBoxState();
 }
 
 class _SearchBoxState extends State<SearchBox> {
-  
   screenSwitcher myScreenSwitcher = screenSwitcher(
-  screens: [],
-  screens1: [],
-  screens2: [],
-  screens3: [],
-  screens4: [],
-  screens5: [],
-  screens6: [],
-  screens7: [],
-  screens8: [],
-  screens9: [],
-  screens10: [],
-  screens11: [],
-  screens12: [],
-  screens13: [],
-  screens14: [],
-  screens15: [],
-);
+    screens: [],
+    screens1: [],
+    screens2: [],
+    screens3: [],
+    screens4: [],
+    screens5: [],
+    screens6: [],
+    screens7: [],
+    screens8: [],
+    screens9: [],
+    screens10: [],
+    screens11: [],
+    screens12: [],
+    screens13: [],
+    screens14: [],
+    screens15: [],
+  );
 
-int index = myScreenSwitcher._ScreenSwitcherState.index;
-  
+  int index = myScreenSwitcher._ScreenSwitcherState.index;
+
   String _searchText = '';
   String _comparisonText = 'example';
 
@@ -87,7 +83,9 @@ int index = myScreenSwitcher._ScreenSwitcherState.index;
                   bldngIndex = 3;
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MatchFoundScreen(child: FloorPlanMain())),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            MatchFoundScreen(child: FloorPlanMain())),
                   );
                 } else {
                   showDialog(
@@ -95,7 +93,8 @@ int index = myScreenSwitcher._ScreenSwitcherState.index;
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text('Match Not Found'),
-                        content: Text('The input does not match the comparison word.'),
+                        content: Text(
+                            'The input does not match the comparison word.'),
                         actions: <Widget>[
                           TextButton(
                             child: Text('OK'),
@@ -138,4 +137,3 @@ class MatchFoundScreen extends StatelessWidget {
     );
   }
 }
-
