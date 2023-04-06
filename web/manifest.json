@@ -1,6 +1,6 @@
 {
-    "name": "ucg",
-    "short_name": "ucg",
+    "name": "qr_code_scanner",
+    "short_name": "qr_code_scanner",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
