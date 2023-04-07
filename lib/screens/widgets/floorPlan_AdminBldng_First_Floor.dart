@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ucg/main.dart';
 import 'dart:ui' as ui;
 
-/*
-void main() {
-  runApp(floorPlan_AdminBldng_First_Floor());
-}
-*/
-
 class floorPlan_AdminBldng_First_Floor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -57,37 +51,44 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Administration Building First Floor",
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Color.fromARGB(0, 255, 255, 255),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: Center(
-        child: GestureDetector(
-          onScaleStart: _onScaleStart,
-          onScaleUpdate: _onScaleUpdate,
-          child: Transform(
-            transform: Matrix4.identity()
-              ..translate(_translateOffset.dx, _translateOffset.dy)
-              ..scale(_scale),
-            child: CustomPaint(
-              size: Size(cpWidth, (cpWidth * 1.4135922330097086).toDouble()),
-              painter: RPSCustomPainter(),
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: GestureDetector(
+                onScaleStart: _onScaleStart,
+                onScaleUpdate: _onScaleUpdate,
+                child: Transform(
+                  transform: Matrix4.identity()
+                    ..translate(_translateOffset.dx, _translateOffset.dy)
+                    ..scale(_scale),
+                  child: CustomPaint(
+                    size: Size(cpWidth, (cpWidth * 1.4135922330097086).toDouble()),
+                    painter: RPSCustomPainter(),
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
+          AppBar(
+            title: const Text(
+              "Administration Building First Floor",
+              style: TextStyle(color: Colors.black),
+            ),
+            backgroundColor: Color.fromARGB(0, 255, 255, 255),
+            centerTitle: true,
+            elevation: 0,
+          ),
+        ],
       ),
     );
   }
 }
+
 class RPSCustomPainter extends CustomPainter {
-    @override
-    void paint(Canvas canvas, Size size) {
-            
+  @override
+  void paint(Canvas canvas, Size size) {
+    
 Paint paint_0_fill = Paint()..style=PaintingStyle.fill;
 paint_0_fill.color = Colors.white.withOpacity(1.0);
 canvas.drawRect(Rect.fromLTWH(0,0,size.width,size.height),paint_0_fill);
