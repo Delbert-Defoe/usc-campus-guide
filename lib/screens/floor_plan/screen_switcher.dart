@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ucg/screens/building_View/building_search_simulation.dart';
-import 'package:ucg/screens/widgets/floorPlan_AdminBldng_First_Floor.dart';
-
 
 class screenSwitcher extends StatefulWidget {
   final List<Widget> screens;
@@ -58,23 +55,16 @@ class screenSwitcher extends StatefulWidget {
           screens14,
           screens15,
         ];
-        
 
   @override
   _ScreenSwitcherState createState() => _ScreenSwitcherState();
-
-  
 }
-
 
 class _ScreenSwitcherState extends State<screenSwitcher> {
   int _currentIndex = 0;
-  
+
   int index = 0;
 
-  int get thisindex {
-    return index;
-  }
   PageController _pageController = PageController(initialPage: 0);
 
   void _incrementIndex() {
@@ -114,9 +104,6 @@ class _ScreenSwitcherState extends State<screenSwitcher> {
     _currentIndex = 0;
     setState(() {});
   }
-
-
-  
 
   @override
   Widget build(BuildContext context) {
