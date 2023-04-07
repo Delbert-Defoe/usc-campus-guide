@@ -62,6 +62,7 @@ class screenSwitcher extends StatefulWidget {
 
 class _ScreenSwitcherState extends State<screenSwitcher> {
   int _currentIndex = 0;
+
   int index = 0;
 
   PageController _pageController = PageController(initialPage: 0);
