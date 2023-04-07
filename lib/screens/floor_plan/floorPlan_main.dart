@@ -63,10 +63,10 @@ import '../widgets/floorPlan_prefab.dart';
 import 'screen_switcher.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(FloorPlanMain());
 }
 
-class MyApp extends StatelessWidget {
+class FloorPlanMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -92,45 +92,24 @@ class MyApp extends StatelessWidget {
           floorPlan_SocialSciences_FirstFloor(),
           floorPlan_SocialSciences_GroundFloor(),
         ],
-        screens4: [
-          floorPlan_Auditorium()
-        ],
+        screens4: [floorPlan_Auditorium()],
         screens5: [
           floorPlan_Forde_Library_FirstFloor(),
           floorPlan_Forde_Library_GroundFloor(),
         ],
-        screens6: [
-          floorPlan_FordeResearchLibrary()
-        ],
-        screens7: [
-          floorPlan_HealthFoods()
-        ],
-        screens8: [
-          floorPlan_Humanities()
-        ],
+        screens6: [floorPlan_FordeResearchLibrary()],
+        screens7: [floorPlan_HealthFoods()],
+        screens8: [floorPlan_Humanities()],
         screens9: [
           floorPlan_KennedyArts_FirstFloor(),
           floorPlan_KennedyArts_GroundFloor(),
         ],
-        screens10: [
-          floorPlan_LaRealista()
-        ],
-        screens11: [
-          floorPlan_MusicAmpithetre()
-        ],
-        screens12: [
-          floorPlan_MusicOfficesAndLabs()
-        ],
-        screens13: [
-          floorPlan_prefab()
-        ],
-        screens14: [
-          floorPlan_SecurityBldng()
-        ],
-        screens15: [
-          floorPlan_TheologyBldng()
-        ],
-        
+        screens10: [floorPlan_LaRealista()],
+        screens11: [floorPlan_MusicAmpithetre()],
+        screens12: [floorPlan_MusicOfficesAndLabs()],
+        screens13: [floorPlan_prefab()],
+        screens14: [floorPlan_SecurityBldng()],
+        screens15: [floorPlan_TheologyBldng()],
       ),
     );
   }
