@@ -71,7 +71,6 @@ void main() {
 class FloorPlanMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'Page View Example',
       home: screenSwitcher(
@@ -95,45 +94,24 @@ class FloorPlanMain extends StatelessWidget {
           floorPlan_SocialSciences_FirstFloor(),
           floorPlan_SocialSciences_GroundFloor(),
         ],
-        screens4: [
-          floorPlan_Auditorium()
-        ],
+        screens4: [floorPlan_Auditorium()],
         screens5: [
           floorPlan_Forde_Library_FirstFloor(),
           floorPlan_Forde_Library_GroundFloor(),
         ],
-        screens6: [
-          floorPlan_FordeResearchLibrary()
-        ],
-        screens7: [
-          floorPlan_HealthFoods()
-        ],
-        screens8: [
-          floorPlan_Humanities()
-        ],
+        screens6: [floorPlan_FordeResearchLibrary()],
+        screens7: [floorPlan_HealthFoods()],
+        screens8: [floorPlan_Humanities()],
         screens9: [
           floorPlan_KennedyArts_FirstFloor(),
           floorPlan_KennedyArts_GroundFloor(),
         ],
-        screens10: [
-          floorPlan_LaRealista()
-        ],
-        screens11: [
-          floorPlan_MusicAmpithetre()
-        ],
-        screens12: [
-          floorPlan_MusicOfficesAndLabs()
-        ],
-        screens13: [
-          floorPlan_prefab()
-        ],
-        screens14: [
-          floorPlan_SecurityBldng()
-        ],
-        screens15: [
-          floorPlan_TheologyBldng()
-        ],
-        
+        screens10: [floorPlan_LaRealista()],
+        screens11: [floorPlan_MusicAmpithetre()],
+        screens12: [floorPlan_MusicOfficesAndLabs()],
+        screens13: [floorPlan_prefab()],
+        screens14: [floorPlan_SecurityBldng()],
+        screens15: [floorPlan_TheologyBldng()],
       ),
     );
   }
@@ -480,23 +458,20 @@ class screenSwitcher extends StatefulWidget {
           screens14,
           screens15,
         ];
-        
 
   @override
   _ScreenSwitcherState createState() => _ScreenSwitcherState();
-
-  
 }
-
 
 class _ScreenSwitcherState extends State<screenSwitcher> {
   int _currentIndex = 0;
-  
-  int index = 1;
+
+  int index = 2;
 
   int get thisindex {
     return index;
   }
+
   PageController _pageController = PageController(initialPage: 0);
 
   void _incrementIndex() {
@@ -536,9 +511,6 @@ class _ScreenSwitcherState extends State<screenSwitcher> {
     _currentIndex = 0;
     setState(() {});
   }
-
-
-  
 
   @override
   Widget build(BuildContext context) {
