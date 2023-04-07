@@ -55,28 +55,35 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Administration Building Ground Floor",
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Color.fromARGB(0, 255, 255, 255),
-        centerTitle: true,
-        elevation: 0,
-      ),
-      body: Center(
-        child: GestureDetector(
-          onScaleStart: _onScaleStart,
-          onScaleUpdate: _onScaleUpdate,
-          child: Transform(
-            transform: Matrix4.identity()
-              ..translate(_translateOffset.dx, _translateOffset.dy)
-              ..scale(_scale),
-            child: CustomPaint(
-              size: Size(cpWidth, (cpWidth * 1.1986531986531987).toDouble()),
-              painter: RPSCustomPainter(),
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+            child: GestureDetector(
+              onScaleStart: _onScaleStart,
+              onScaleUpdate: _onScaleUpdate,
+              child: Transform(
+                transform: Matrix4.identity()
+                  ..translate(_translateOffset.dx, _translateOffset.dy)
+                  ..scale(_scale),
+                child: CustomPaint(
+                  size: Size(cpWidth, (cpWidth * 1.1986531986531987).toDouble()),
+                  painter: RPSCustomPainter(),
+                ),
+              ),
+            ),
             ),
           ),
-        ),
+          AppBar(
+            title: const Text(
+              "Administration Building Ground Floor",
+              style: TextStyle(color: Colors.black),
+            ),
+            backgroundColor: Color.fromARGB(0, 255, 255, 255),
+            centerTitle: true,
+            elevation: 0,
+          ),
+        ],
       ),
     );
   }
