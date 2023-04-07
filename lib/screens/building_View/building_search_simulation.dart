@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ucg/screens/floor_plan/test_cases.dart';
 import '../floor_plan/floorPlan_main.dart';
-import 'package:ucg/screensfloor_plan/screen_switcher.dart';
 
 void main() => runApp(BSS());
 
@@ -46,8 +45,6 @@ class _SearchBoxState extends State<SearchBox> {
   screens14: [],
   screens15: [],
 );
-
-int index = myScreenSwitcher._ScreenSwitcherState.index;
   
   String _searchText = '';
   String _comparisonText = 'example';
