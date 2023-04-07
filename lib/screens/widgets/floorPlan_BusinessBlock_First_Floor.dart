@@ -23,6 +23,7 @@ class floorPlan_BusinessBlock_First_Floor extends StatelessWidget {
 
 
 
+
 class RPSCustomPainter extends CustomPainter {
     @override
     void paint(Canvas canvas, Size size) {
@@ -4522,41 +4523,38 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Column(
       children: [
-        AppBar(
-          backgroundColor: Color.fromARGB(0, 255, 255, 255),
-          elevation: 0,
-        ),
         Expanded(
-          child: GestureDetector(
-            onScaleStart: _onScaleStart,
-            onScaleUpdate: _onScaleUpdate,
-            child: Transform(
-              transform: Matrix4.identity()
-                ..translate(_translateOffset.dx, _translateOffset.dy)
-                ..scale(_scale),
-              child: CustomPaint(
-                size: Size(cpWidth, (cpWidth * 1.298).toDouble()),
-                painter: RPSCustomPainter(),
+          child: Center(
+            child: GestureDetector(
+              onScaleStart: _onScaleStart,
+              onScaleUpdate: _onScaleUpdate,
+              child: Transform(
+                transform: Matrix4.identity()
+                  ..translate(_translateOffset.dx, _translateOffset.dy)
+                  ..scale(_scale),
+                child: CustomPaint(
+                  size: Size(cpWidth, (cpWidth * 1.298).toDouble()),
+                  painter: RPSCustomPainter(),
+                ),
               ),
             ),
           ),
         ),
         AppBar(
-          title: const Text("Business Block First Floor - Floor Plan",
+          title: const Text(
+            "Business Block First Floor - Floor Plan",
             style: TextStyle(color: Colors.black),
           ),
           backgroundColor: Color.fromARGB(0, 255, 255, 255),
           centerTitle: true,
           elevation: 0,
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(kToolbarHeight),
-            child: SizedBox(),
-          ),
         ),
       ],
-    );
-  }
+    ),
+  );
+}
 }
