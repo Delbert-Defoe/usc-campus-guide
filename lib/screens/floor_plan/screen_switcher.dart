@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucg/screens/building_View/building_search_simulation.dart';
 
 class screenSwitcher extends StatefulWidget {
   final List<Widget> screens;
@@ -57,22 +58,23 @@ class screenSwitcher extends StatefulWidget {
         ];
 
   @override
-  _ScreenSwitcherState createState() => _ScreenSwitcherState();
+  ScreenSwitcherState createState() => ScreenSwitcherState();
 }
 
 
 
-class _ScreenSwitcherState extends State<screenSwitcher> {
+class ScreenSwitcherState extends State<screenSwitcher> {
+
   int _currentIndex = 0;
 
   int index = 0;
 
-  PageController _pageController = PageController(initialPage: 0);
+  PageController pageController = PageController(initialPage: 0);
 
   void _incrementIndex() {
     setState(() {
       _currentIndex++;
-      _pageController.animateToPage(_currentIndex,
+      pageController.animateToPage(_currentIndex,
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
     });
   }
@@ -80,12 +82,18 @@ class _ScreenSwitcherState extends State<screenSwitcher> {
   void _decrementIndex() {
     setState(() {
       _currentIndex--;
-      _pageController.animateToPage(_currentIndex,
+      pageController.animateToPage(_currentIndex,
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
     });
   }
+  
 
-  void _buildingIncrement() {
+  // set building index
+  void buildingSet(int i) {
+    widget.allScreens[i];
+  }
+
+  void buildingIncrement() {
     if (index >= 0 && index != 15) {
       index++;
     }
@@ -107,60 +115,42 @@ class _ScreenSwitcherState extends State<screenSwitcher> {
     setState(() {});
   }
 
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         children: widget.allScreens[index],
-        controller: _pageController,
+        controller: pageController,
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Container(
+              width: 40,
+              height: 40,
+              margin: EdgeInsets.only(left: 106, right: 32),
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 69, 158, 0),
                 borderRadius: BorderRadius.circular(8.0),
               ),
               //back arrow
               child: IconButton(
-                icon: Icon(Icons.arrow_back_ios_sharp),
+                icon: Icon(Icons.arrow_back_ios_sharp, size: 24),
                 color: Colors.white,
                 onPressed: _currentIndex == 0 ? null : _decrementIndex,
               ),
             ),
-            //decrement building
             Container(
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 89, 89, 0.663),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.gps_fixed_sharp),
-                color: Colors.white,
-                onPressed: _buildingDecrement,
-              ),
-            ),
-            //increment building
-            Container(
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(89, 89, 255, 0.665),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.gps_fixed_sharp),
-                color: Colors.white,
-                onPressed: _buildingIncrement,
-              ),
-            ),
-            Container(
+              width: 40,
+              height: 40,
+              margin: EdgeInsets.only(left: 32, right: 106),
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 69, 158, 0),
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: IconButton(
-                icon: Icon(Icons.arrow_forward_ios_sharp),
+                icon: Icon(Icons.arrow_forward_ios_sharp, size: 24),
                 color: Colors.white,
                 onPressed: _currentIndex == widget.allScreens[index].length - 1
                     ? null

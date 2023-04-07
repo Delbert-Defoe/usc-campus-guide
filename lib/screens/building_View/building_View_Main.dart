@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ucg/screens/building_View/building_View_Info.dart';
+import '../floor_plan/floorPlan_main.dart';
 
 void main() => runApp(MyApp());
 
@@ -52,13 +54,13 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             Container(
               color: Colors.white,
               child: Center(
-                child: Text("Information tab"),
+                child: infoTab(),
               ),
             ),
             Container(
               color: Colors.white,
               child: Center(
-                child: Text("Floor Plan tab"),
+                child: FloorPlanMain(),
               ),
             ),
           ],

@@ -1,15 +1,112 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(infoTab());
 
-class MyApp extends StatefulWidget {
+class infoTab extends StatelessWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Horizontal Images',
+      home: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 200,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: 100),
+                        child: _buildRoundedImage(),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: 100),
+                        child: _buildRoundedImage(),
+                      ),
+                      _buildRoundedImage(),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 28),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'School of Science and Technology',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 4),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in dui elementum, sollicitudin risus sed, hendrerit lectus.',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRoundedImage() {
+  return Container(
+    width: 250,
+    height: 500,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: Colors.grey[300],
+    ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Image.network(
+        'https://images.unsplash.com/photo-1592066575517-58df903152f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMGJ1aWxkaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        width: 250,
+        height: 500,
+        fit: BoxFit.cover,
+      ),
+    ),
+  );
+}
 }
 
-class _MyAppState extends State<MyApp> {
+
+
+
+
+
+/*
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(infoTab());
+}
+
+class infoTab extends StatefulWidget {
+  @override
+  _infoTabState createState() => _infoTabState();
+}
+
+class _infoTabState extends State<infoTab> {
 
   int _currentIndex = 0;
 
@@ -115,3 +212,4 @@ class ScreenThree extends StatelessWidget {
     );
   }
 }
+*****/

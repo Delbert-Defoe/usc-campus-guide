@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ucg/screens/floor_plan/test_cases.dart';
 import '../floor_plan/floorPlan_main.dart';
+import '../floor_plan/screen_switcher.dart';
 
 void main() => runApp(BSS());
 
 class BSS extends StatelessWidget {
+
+  int newIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,35 +25,20 @@ class BSS extends StatelessWidget {
 class SearchBox extends StatefulWidget {
 
   @override
-  _SearchBoxState createState() => _SearchBoxState();
+  SearchBoxState createState() => SearchBoxState();
 }
 
-class _SearchBoxState extends State<SearchBox> {
-  
-  screenSwitcher myScreenSwitcher = screenSwitcher(
-  screens: [],
-  screens1: [],
-  screens2: [],
-  screens3: [],
-  screens4: [],
-  screens5: [],
-  screens6: [],
-  screens7: [],
-  screens8: [],
-  screens9: [],
-  screens10: [],
-  screens11: [],
-  screens12: [],
-  screens13: [],
-  screens14: [],
-  screens15: [],
-);
-  
+class SearchBoxState extends State<SearchBox> {
+
+  BSS myBSS = new BSS();
+  FloorPlanMain myFloorPlan = FloorPlanMain();
+
+  ScreenSwitcherState myScreenSwitcherState = new ScreenSwitcherState();
+ 
   String _searchText = '';
-  String _comparisonText = 'example';
+  String _comparisonText = 'new';
 
   FloorPlanMain fp = new FloorPlanMain();
-  int bldngIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +69,13 @@ class _SearchBoxState extends State<SearchBox> {
               child: Text('Search'),
               onPressed: () {
                 if (_searchText == _comparisonText) {
-                  bldngIndex = 3;
+                  myScreenSwitcherState.index = 10;
+                  print("changed");
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => MatchFoundScreen(child: FloorPlanMain())),
                   );
-                } else {
+                  } else {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
