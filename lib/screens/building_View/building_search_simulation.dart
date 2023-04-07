@@ -43,8 +43,6 @@ class _SearchBoxState extends State<SearchBox> {
     screens15: [],
   );
 
-  int index = myScreenSwitcher._ScreenSwitcherState.index;
-
   String _searchText = '';
   String _comparisonText = 'example';
 
