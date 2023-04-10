@@ -13,11 +13,13 @@ class SearchComponent extends StatefulWidget {
 }
 
 class SearchComponentState extends State<SearchComponent> {
-  late TextEditingController textController;
+  late TextEditingController _textController;
+  late FocusNode _focusNode;
 
   @override
   void initState() {
-    textController = TextEditingController();
+    _textController = TextEditingController();
+    _focusNode = FocusNode();
     super.initState();
   }
 
@@ -65,7 +67,8 @@ class SearchComponentState extends State<SearchComponent> {
                         // borderRadius: BorderRadius.circular(20),
                         color: Colors.transparent,
                         child: TextField(
-                          controller: textController,
+                          focusNode: _focusNode,
+                          controller: _textController,
                           onChanged: (text) => provider.getSearchResults(text),
                           style: texttheme.bodyMedium,
                           decoration: InputDecoration(
@@ -89,14 +92,17 @@ class SearchComponentState extends State<SearchComponent> {
                     style: texttheme.bodySmall,
                   ),
                   const SizedBox(height: 24),
-                  ListView(children: [
-                    if (provider.searchResults.isNotEmpty)
-                      ...provider.searchResults
-                          .map((result) => Container(
-                              margin: const EdgeInsets.only(bottom: 16),
-                              child: _getResultCard(context, result)))
-                          .toList()
-                  ])
+                  ListView(
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      children: [
+                        if (provider.searchResults.isNotEmpty)
+                          ...provider.searchResults
+                              .map((result) => Container(
+                                  margin: const EdgeInsets.only(bottom: 16),
+                                  child: _getResultCard(context, result)))
+                              .toList()
+                      ])
                 ],
               ),
               provider.activeResult == null
@@ -114,7 +120,8 @@ class SearchComponentState extends State<SearchComponent> {
 
   @override
   void dispose() {
-    textController.dispose();
+    _textController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -161,7 +168,10 @@ class SearchComponentState extends State<SearchComponent> {
               Icons.info_outline,
               color: theme.primaryColor,
             ),
-            onTap: () => provider.setActiveResult(result),
+            onTap: () => {
+              FocusScope.of(context).unfocus(),
+              provider.setActiveResult(result)
+            },
           ),
         ));
   }

@@ -95,7 +95,7 @@ class MapProvider extends ChangeNotifier {
     } else if (result is Building) {
       activeResult = result;
     }
-
+    searchResults = [];
     notifyListeners();
   }
 
