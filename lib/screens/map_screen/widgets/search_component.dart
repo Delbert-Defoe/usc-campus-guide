@@ -181,7 +181,7 @@ class SearchComponentState extends State<SearchComponent> {
 
     return TweenAnimationBuilder(
       tween: Tween<double>(begin: 0, end: 1),
-      duration: Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 250),
       builder: (context, val, child) {
         return Opacity(opacity: val, child: child);
       },
@@ -214,7 +214,22 @@ class SearchComponentState extends State<SearchComponent> {
                   activeResult.name,
                   style: theme.textTheme.bodySmall!
                       .copyWith(color: theme.primaryColor),
-                )
+                ),
+                Expanded(
+                    child: Stack(children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: () =>
+                          Provider.of<MapProvider>(context, listen: false)
+                              .clearActiveResult(),
+                      child: Icon(
+                        Icons.close,
+                        color: theme.disabledColor,
+                      ),
+                    ),
+                  )
+                ]))
               ],
             ),
             const SizedBox(height: 8),
