@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ucg/models/onboarding_model.dart';
-
+import 'package:ucg/utils/custom_theme.dart';
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -12,7 +12,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
 
   int _pageIndex = 0;
-
+  int pop =4;
   @override
   void dispose() {
     _pageController.dispose();
@@ -22,6 +22,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final onboarding = Onboard.fetchAll();
+    bool finalPage = _pageIndex >= pop ;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -33,7 +34,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   onPressed: () {},
                   style:
                       TextButton.styleFrom(backgroundColor: Color(0xFFFFFFFF)),
-                  child: Text(
+                  child: const Text(
                     "Skip",
                     style: TextStyle(
                         fontFamily: "Roboto",
@@ -74,14 +75,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       style: TextButton.styleFrom(
                           backgroundColor: Color(0xFF459E00)),
-                      child: Text(
-                        "<",
-                        style: TextStyle(
-                            fontFamily: "Roboto",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 28,
-                            color: Color(0xFFFFFFFF)),
-                      ),
+                      child:  Icon(Icons.chevron_left,size: 20,color: Colors.white,),
                     )),
                 const Spacer(),
                 ...List.generate(
@@ -92,27 +86,38 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 const Spacer(),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: TextButton(
-                      onPressed: () {
-                        if (_pageController.hasClients) {
-                          _pageController.nextPage(
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.ease);
-                        }
-                      },
-                      style: TextButton.styleFrom(
-                          backgroundColor: Color(0xFF459E00)),
-                      child: Text(
-                        ">",
-                        style: TextStyle(
-                            fontFamily: "Roboto",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 28,
-                            color: Color.fromARGB(255, 255, 255, 255)),
-                      ),
-                    )),
+                Visibility(
+                  visible: !finalPage,
+                  replacement:Container(margin: EdgeInsets.all(10),
+                      child: TextButton(
+                        onPressed: () {
+                        },
+                        style: TextButton.styleFrom(
+                            backgroundColor: Color(0xFF459E00)),
+                        child:  Text(
+                    "Get Started",
+                    style: TextStyle(
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,color: Colors.white
+                        ),
+                  )
+                      )) ,
+                  child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: TextButton(
+                        onPressed: () {
+                          if (_pageController.hasClients) {
+                            _pageController.nextPage(
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.ease);
+                          }
+                        },
+                        style: TextButton.styleFrom(
+                            backgroundColor: Color(0xFF459E00)),
+                        child: Icon(Icons.chevron_right,size: 20,color: Colors.white,)
+                      )),
+                ),
               ],
             ),
           ],
@@ -155,30 +160,30 @@ class OnboardingContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: 50,
+         const SizedBox(height: 50,),
+        Container(height: 300,
+              width: 300,
+          child: Image.asset(
+            
+            image, fit: BoxFit.fitWidth
+              
+        
+          ),
         ),
-        Image.asset(
-          image,
-          height: 250,
-        ),
-        const SizedBox(
-          height: 40,
-        ),
+      const SizedBox(height: 40,),
         Text(title,
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .headline5!
-                .copyWith(fontWeight: FontWeight.w500)),
-        const SizedBox(
-          height: 20,
+        textAlign: TextAlign.center,
+        style: Theme.of(context)
+        .textTheme
+        .headline5!
+        .copyWith(fontWeight: FontWeight.w500)
         ),
-        Text(
-          description,
-          textAlign: TextAlign.center,
-        ),
-        const Spacer()
+        const SizedBox(height: 20,),
+    Text(description,
+        textAlign: TextAlign.center,
+        
+        ),  
+    const Spacer()       
       ],
     );
   }
