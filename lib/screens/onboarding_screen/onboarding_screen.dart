@@ -22,7 +22,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final onboarding = Onboard.fetchAll();
-    bool finalPage = _pageIndex >= pop ;
+    bool finalPage = _pageIndex >= pop-1 ;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -64,8 +64,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Row(
               children: [
                 Container(
+                     height: 40,width: 40,
                     margin: EdgeInsets.all(10),
                     child: TextButton(
+
                       onPressed: () {
                         if (_pageController.hasClients) {
                           _pageController.previousPage(
@@ -74,7 +76,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         }
                       },
                       style: TextButton.styleFrom(
-                          backgroundColor: Color(0xFF459E00)),
+                          backgroundColor: Theme.of(context).primaryColor),
                       child:  Icon(Icons.chevron_left,size: 20,color: Colors.white,),
                     )),
                 const Spacer(),
@@ -93,8 +95,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         onPressed: () {
                         },
                         style: TextButton.styleFrom(
-                            backgroundColor: Color(0xFF459E00)),
-                        child:  Text(
+                            backgroundColor: Theme.of(context).primaryColor),
+                        child:  const Text(
                     "Get Started",
                     style: TextStyle(
                         fontFamily: "Roboto",
@@ -104,8 +106,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   )
                       )) ,
                   child: Container(
+                    height: 40,width: 40,
                       margin: EdgeInsets.all(10),
                       child: TextButton(
+                        
                         onPressed: () {
                           if (_pageController.hasClients) {
                             _pageController.nextPage(
@@ -114,7 +118,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           }
                         },
                         style: TextButton.styleFrom(
-                            backgroundColor: Color(0xFF459E00)),
+                            backgroundColor: Theme.of(context).primaryColor),
                         child: Icon(Icons.chevron_right,size: 20,color: Colors.white,)
                       )),
                 ),
