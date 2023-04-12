@@ -1,9 +1,7 @@
-import "dart:html";
 import "dart:math";
-
 import "package:flutter/material.dart";
 import "package:flutter_polyline_points/flutter_polyline_points.dart";
-import "package:geolocator/geolocator.dart";
+//import "package:geolocator/geolocator.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
 import "package:provider/provider.dart";
 import "package:ucg/models/building.dart";
@@ -152,25 +150,25 @@ class MapProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addDeviceLocation() async {
-    bool enabled = await Geolocator.isLocationServiceEnabled();
-    print(enabled);
+  // void addDeviceLocation() async {
+  //   bool enabled = await Geolocator.isLocationServiceEnabled();
+  //   print(enabled);
 
-    if (!enabled) {
-      await Geolocator.requestPermission();
-    }
+  //   if (!enabled) {
+  //     await Geolocator.requestPermission();
+  //   }
 
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.bestForNavigation);
+  //   Position position = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.bestForNavigation);
 
-    Marker marker = Marker(
-        markerId: const MarkerId("currentLocation"),
-        position: LatLng(position.latitude, position.longitude),
-        icon: BitmapDescriptor.defaultMarkerWithHue(
-            _getHuefromRBG(const Color(0xF345E00))));
+  //   Marker marker = Marker(
+  //       markerId: const MarkerId("currentLocation"),
+  //       position: LatLng(position.latitude, position.longitude),
+  //       icon: BitmapDescriptor.defaultMarkerWithHue(
+  //           _getHuefromRBG(const Color(0xF345E00))));
 
-    markers.add(marker);
-  }
+  //   markers.add(marker);
+  // }
 
   void _getPolyPoints() async {
     PolylinePoints polylinePoints = PolylinePoints();
