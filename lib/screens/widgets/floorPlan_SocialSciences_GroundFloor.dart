@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ucg/main.dart';
+//import 'package:ucg/main.dart';
 import 'dart:ui' as ui;
 
 void main() {
@@ -20,7 +20,6 @@ class floorPlan_SocialSciences_GroundFloor extends StatelessWidget {
     );
   }
 }
-
 
 class RPSCustomPainter extends CustomPainter {
   @override
@@ -4999,7 +4998,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   double cpWidth = 400;
 
   // Zoom and pan variables
@@ -5019,44 +5017,44 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onScaleUpdate(ScaleUpdateDetails details) {
     setState(() {
       _scale = _previousScale * details.scale;
-      _translateOffset = _previousOffset -
-          (_startFocalPoint - details.focalPoint) / _scale;
+      _translateOffset =
+          _previousOffset - (_startFocalPoint - details.focalPoint) / _scale;
     });
   }
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: Column(
-      children: [
-        Expanded(
-          child: Center(
-            child: GestureDetector(
-              onScaleStart: _onScaleStart,
-              onScaleUpdate: _onScaleUpdate,
-              child: Transform(
-                transform: Matrix4.identity()
-                  ..translate(_translateOffset.dx, _translateOffset.dy)
-                  ..scale(_scale),
-                child: CustomPaint(
-                  size: Size(cpWidth, (cpWidth * 1.446464).toDouble()),
-                  painter: RPSCustomPainter(),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: GestureDetector(
+                onScaleStart: _onScaleStart,
+                onScaleUpdate: _onScaleUpdate,
+                child: Transform(
+                  transform: Matrix4.identity()
+                    ..translate(_translateOffset.dx, _translateOffset.dy)
+                    ..scale(_scale),
+                  child: CustomPaint(
+                    size: Size(cpWidth, (cpWidth * 1.446464).toDouble()),
+                    painter: RPSCustomPainter(),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        AppBar(
-          title: const Text(
-            "Social Sciences Ground Floor - Floor Plan",
-            style: TextStyle(color: Colors.black),
+          AppBar(
+            title: const Text(
+              "Social Sciences Ground Floor - Floor Plan",
+              style: TextStyle(color: Colors.black),
+            ),
+            backgroundColor: Color.fromARGB(0, 255, 255, 255),
+            centerTitle: true,
+            elevation: 0,
           ),
-          backgroundColor: Color.fromARGB(0, 255, 255, 255),
-          centerTitle: true,
-          elevation: 0,
-        ),
-      ],
-    ),
-  );
-}
+        ],
+      ),
+    );
+  }
 }

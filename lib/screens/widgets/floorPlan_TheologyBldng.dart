@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ucg/main.dart';
+//import 'package:ucg/main.dart';
 import 'dart:ui' as ui;
 
 void main() {

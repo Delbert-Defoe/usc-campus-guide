@@ -61,10 +61,7 @@ class screenSwitcher extends StatefulWidget {
   ScreenSwitcherState createState() => ScreenSwitcherState();
 }
 
-
-
 class ScreenSwitcherState extends State<screenSwitcher> {
-
   int _currentIndex = 0;
 
   int index = 0;
@@ -86,7 +83,6 @@ class ScreenSwitcherState extends State<screenSwitcher> {
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
     });
   }
-  
 
   // set building index
   void buildingSet(int i) {
@@ -115,49 +111,55 @@ class ScreenSwitcherState extends State<screenSwitcher> {
     setState(() {});
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         children: widget.allScreens[index],
         controller: pageController,
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              margin: EdgeInsets.only(left: 106, right: 32),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 69, 158, 0),
-                borderRadius: BorderRadius.circular(8.0),
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.only(top: 13, bottom: 13), // set the margin here
+        child: BottomAppBar(
+          color: Color.fromARGB(255, 250, 250, 250),
+          elevation: 0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                margin: EdgeInsets.only(left: 106, right: 32),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 69, 158, 0),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                //back arrow
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back_ios_sharp, size: 24),
+                  color: Colors.white,
+                  onPressed: _currentIndex == 0 ? null : _decrementIndex,
+                ),
               ),
-              //back arrow
-              child: IconButton(
-                icon: Icon(Icons.arrow_back_ios_sharp, size: 24),
-                color: Colors.white,
-                onPressed: _currentIndex == 0 ? null : _decrementIndex,
+              Container(
+                width: 40,
+                height: 40,
+                margin: EdgeInsets.only(left: 32, right: 106),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 69, 158, 0),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_forward_ios_sharp, size: 24),
+                  color: Colors.white,
+                  onPressed:
+                      _currentIndex == widget.allScreens[index].length - 1
+                          ? null
+                          : _incrementIndex,
+                ),
               ),
-            ),
-            Container(
-              width: 40,
-              height: 40,
-              margin: EdgeInsets.only(left: 32, right: 106),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 69, 158, 0),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.arrow_forward_ios_sharp, size: 24),
-                color: Colors.white,
-                onPressed: _currentIndex == widget.allScreens[index].length - 1
-                    ? null
-                    : _incrementIndex,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

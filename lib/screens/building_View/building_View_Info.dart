@@ -21,11 +21,11 @@ class infoTab extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(right: 100),
+                        padding: EdgeInsets.only(right: 16),
                         child: _buildRoundedImage(),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(right: 100),
+                        padding: EdgeInsets.only(right: 16),
                         child: _buildRoundedImage(),
                       ),
                       _buildRoundedImage(),
@@ -69,24 +69,24 @@ class infoTab extends StatelessWidget {
   }
 
   Widget _buildRoundedImage() {
-  return Container(
-    width: 250,
-    height: 500,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      color: Colors.grey[300],
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: Image.network(
-        'https://images.unsplash.com/photo-1592066575517-58df903152f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMGJ1aWxkaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-        width: 250,
-        height: 500,
-        fit: BoxFit.cover,
+    return Container(
+      width: 250,
+      height: 500,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.grey[300],
       ),
-    ),
-  );
-}
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.network(
+          'https://images.unsplash.com/photo-1592066575517-58df903152f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sbGVnZSUyMGJ1aWxkaW5nfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+          width: 250,
+          height: 500,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
 }
 
 

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import '../floor_plan/screen_switcher.dart';
-import '../floor_plan/floorPlan_main.dart';
+import 'floorPlans.dart';
 
 void main() {
   group('ScreenSwitcher', () {
@@ -21,13 +21,12 @@ void main() {
 }
 
 class ScreenSwitcher {
-
   int currentIndex = 0;
   void _incrementIndex() {
-      currentIndex++;
+    currentIndex++;
   }
 
   void _decrementIndex() {
-      currentIndex--;
+    currentIndex--;
   }
 }

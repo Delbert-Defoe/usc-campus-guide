@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ucg/screens/floor_plan/test_cases.dart';
-import '../floor_plan/floorPlan_main.dart';
+import '../floor_plan/floorPlans.dart';
 import '../floor_plan/screen_switcher.dart';
 
 void main() => runApp(BSS());
 
 class BSS extends StatelessWidget {
-
   int newIndex = 0;
 
   @override
@@ -19,22 +18,19 @@ class BSS extends StatelessWidget {
       ),
     );
   }
-
 }
 
 class SearchBox extends StatefulWidget {
-
   @override
   SearchBoxState createState() => SearchBoxState();
 }
 
 class SearchBoxState extends State<SearchBox> {
-
   BSS myBSS = new BSS();
   FloorPlanMain myFloorPlan = FloorPlanMain();
 
   ScreenSwitcherState myScreenSwitcherState = new ScreenSwitcherState();
- 
+
   String _searchText = '';
   String _comparisonText = 'new';
 
@@ -73,15 +69,18 @@ class SearchBoxState extends State<SearchBox> {
                   print("changed");
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MatchFoundScreen(child: FloorPlanMain())),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            MatchFoundScreen(child: FloorPlanMain())),
                   );
-                  } else {
+                } else {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text('Match Not Found'),
-                        content: Text('The input does not match the comparison word.'),
+                        content: Text(
+                            'The input does not match the comparison word.'),
                         actions: <Widget>[
                           TextButton(
                             child: Text('OK'),
@@ -124,4 +123,3 @@ class MatchFoundScreen extends StatelessWidget {
     );
   }
 }
-

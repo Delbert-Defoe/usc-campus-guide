@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ucg/screens/building_View/building_View_Info.dart';
-import '../floor_plan/floorPlan_main.dart';
+import '../floor_plan/floorPlans.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,6 +33,26 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              ),
+              onPressed: () {},
+            ),
+          ),
+          centerTitle: true,
+          title: Text(
+            "Building",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Roboto',
+            ),
+          ),
           bottom: TabBar(
             controller: _tabController,
             indicatorColor: Colors.lightGreen,
