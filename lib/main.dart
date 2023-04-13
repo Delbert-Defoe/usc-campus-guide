@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final pages = <Map<String, String>>[
     {"pageTitle": "Onboarding", "route": "/onboarding"},
-    {"pageTitle": "Home", "route": "/"},
+    {"pageTitle": "Home", "route": "/home"},
     {"pageTitle": "Map", "route": "/map"},
     {"pageTitle": "Search", "route": "/search"},
     {"pageTitle": "Building", "route": "/building"},
