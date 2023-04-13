@@ -19,7 +19,7 @@ class Qrcode extends StatefulWidget {
 
 class _QrcodeState extends State<Qrcode> {
   String _data="";
-
+int myIndex = 0;
 
   _scan() async {
   await FlutterBarcodeScanner.scanBarcode("#000000","cancel", true,ScanMode.BARCODE).then((value) => setState(()=>_data = value));
@@ -29,16 +29,36 @@ class _QrcodeState extends State<Qrcode> {
     return  Scaffold(
       body: Center( child:  Column(children: [
 
-
-
         FloatingActionButton (
 
-        onPressed: _scan,
+          onPressed: _scan,
           child: const Text("Scan Qrcode"),
 
-         ),
+        ),
+
+
         Text(_data)
       ],)),
+      bottomNavigationBar: BottomNavigationBar(
+
+        onTap: (index) {
+          setState(() {
+            myIndex = index;
+          });
+        },
+        currentIndex: myIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home),
+          label: 'Home'),
+    BottomNavigationBarItem(icon: Icon(Icons.search),
+    label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.qr_code),
+              label: 'Scan'
+
+
+          ),
+
+      ],),
     );
   }
 }
