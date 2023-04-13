@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: CustomTheme.appTheme,
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: "/",
+      initialRoute: "/onboarding",
     );
   }
 }

@@ -12,7 +12,7 @@ class AppRouter {
     final args = settings.arguments;
 
     switch (settings.name) {
-      case "/":
+      case "/home":
         return MaterialPageRoute(
             builder: (_) => const MyHomePage(title: "Home"));
 

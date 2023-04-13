@@ -65,6 +65,15 @@ flutter:
     - assets/onboardingscreen_assets/mapPlaceholder.jpg
     - assets/onboardingscreen_assets/newBuilding.jpg
     - assets/onboardingscreen_assets/QRCode.PNG
+    - assets/map.png
+    - assets/admin_bld.jpg
+    - assets/humanities_bld.jpg
+    - assets/newBuilding.jpg
+    - assets/laRealista.jpg
+    - assets/business_bld.jpg
+    - assets/sciTech_bld.jpg
+    - assets/fordeLibrary.jpg
+    - assets/auditorium.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
