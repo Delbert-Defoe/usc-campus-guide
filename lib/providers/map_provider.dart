@@ -1,6 +1,7 @@
 import "dart:math";
 import "package:flutter/material.dart";
 import "package:flutter_polyline_points/flutter_polyline_points.dart";
+import "package:geolocator/geolocator.dart";
 //import "package:geolocator/geolocator.dart";
 import "package:google_maps_flutter/google_maps_flutter.dart";
 import "package:provider/provider.dart";
@@ -32,21 +33,21 @@ class MapProvider extends ChangeNotifier {
         name: "Business Block",
         floors: ["Ground Floor", "1st Floor"],
         numFloors: 2,
-        latLong: {"lat": 10.98790, "long": -16.7844}),
+        latLong: {"lat": 10.690497047011323, "long": -61.407206711961656}),
     Building(
         id: "fhfrht6rrZZ",
         streetname: "Campus Boulevard",
         name: "School of Education and Humanities",
         floors: ["Basement", "Ground Floor"],
         numFloors: 2,
-        latLong: {"lat": 10.98791, "long": -16.7844}),
+        latLong: {"lat": 10.689438825735099, "long": -61.407551868891886}),
     Building(
         id: "fhu3345fvZ",
         streetname: "Campus Boulevard",
         name: "School of Social Sciences",
         floors: ["Ground Floor", "1st Floor", "2nd Floor"],
         numFloors: 3,
-        latLong: {"lat": 10.98792, "long": -16.7844}),
+        latLong: {"lat": 10.693127610334265, "long": -61.408248355355745}),
   ];
 
   List<Location> rooms = [
@@ -138,6 +139,14 @@ class MapProvider extends ChangeNotifier {
   }
 
   void addDestinationMarker(Map coords) async {
+    if (markers.isNotEmpty) {
+      markers.clear();
+    }
+
+    if (polyLineCoordinates.isNotEmpty) {
+      polyLineCoordinates.clear();
+    }
+
     Marker marker = Marker(
         markerId: const MarkerId("destination"),
         position: LatLng(coords["lat"], coords["long"]),
@@ -150,32 +159,28 @@ class MapProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // void addDeviceLocation() async {
-  //   bool enabled = await Geolocator.isLocationServiceEnabled();
-  //   print(enabled);
+  Future<PointLatLng> _getDeviceLocation() async {
+    bool enabled = await Geolocator.isLocationServiceEnabled();
+    // print(enabled);
 
-  //   if (!enabled) {
-  //     await Geolocator.requestPermission();
-  //   }
+    if (enabled) {
+      await Geolocator.requestPermission();
+    }
 
-  //   Position position = await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.bestForNavigation);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.bestForNavigation);
 
-  //   Marker marker = Marker(
-  //       markerId: const MarkerId("currentLocation"),
-  //       position: LatLng(position.latitude, position.longitude),
-  //       icon: BitmapDescriptor.defaultMarkerWithHue(
-  //           _getHuefromRBG(const Color(0xF345E00))));
-
-  //   markers.add(marker);
-  // }
+    return PointLatLng(position.latitude, position.longitude);
+  }
 
   void _getPolyPoints() async {
+    PointLatLng devlocation = await _getDeviceLocation();
+
     PolylinePoints polylinePoints = PolylinePoints();
     try {
       PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
           GOOGLE_API_KEY,
-          const PointLatLng(10.690928449085952, -61.40771109344713),
+          devlocation,
           PointLatLng(
               activeResult!.latLong["lat"]!, activeResult!.latLong["long"]!),
           travelMode: TravelMode.walking,
