@@ -3,6 +3,8 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:ucg/main.dart';
+import 'package:ucg/screens/home_screen/home_screen.dart';
+import 'package:ucg/screens/home_screen/home_screen_wrapper.dart';
 import 'package:ucg/screens/map_screen/map_screen.dart';
 import 'package:ucg/screens/search_screen/search_screen.dart';
 import 'package:ucg/screens/onboarding_screen/onboarding_screen.dart';
@@ -13,8 +15,7 @@ class AppRouter {
 
     switch (settings.name) {
       case "/home":
-        return MaterialPageRoute(
-            builder: (_) => const MyHomePage(title: "Home"));
+        return MaterialPageRoute(builder: (_) => const HomeScreenWrapper());
 
       case "/onboarding":
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
@@ -57,7 +58,8 @@ class ErrorScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             TextButton(
-                onPressed: () => {Navigator.pushReplacementNamed(context, "/")},
+                onPressed: () =>
+                    {Navigator.pushReplacementNamed(context, "/home")},
                 child: const Text("Return to safety"))
           ],
         ),

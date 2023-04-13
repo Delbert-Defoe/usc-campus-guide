@@ -55,10 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               top: 94,
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ErrorScreen()));
+                  Navigator.pushNamed(context, "/map");
                 },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
@@ -273,14 +270,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(10),
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
                                   child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ErrorScreen()),
-                                      );
-                                    },
                                     child: Ink.image(
                                       image: const AssetImage(
                                           'assets/bgSearch.png'),
@@ -329,13 +318,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             Clip.antiAliasWithSaveLayer,
                                         child: InkWell(
                                           onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const ErrorScreen(),
-                                              ),
-                                            );
+                                            Navigator.pushNamed(
+                                                context, "/building");
                                           },
                                           child: Ink.image(
                                             image: const AssetImage(
