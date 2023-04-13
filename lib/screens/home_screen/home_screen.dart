@@ -118,11 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               child: InkWell(
                                   onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const ErrorScreen()));
+                                    Navigator.pushNamed(context, "/building");
                                   },
                                   child: Ink.image(
                                     image: const AssetImage(

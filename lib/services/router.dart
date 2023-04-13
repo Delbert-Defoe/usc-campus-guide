@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:ucg/main.dart';
+import 'package:ucg/screens/floor_plan/building_View/building_view.dart';
 import 'package:ucg/screens/home_screen/home_screen.dart';
 import 'package:ucg/screens/home_screen/home_screen_wrapper.dart';
 import 'package:ucg/screens/map_screen/map_screen.dart';
@@ -27,10 +28,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SearchScreen());
 
       case "/building":
-        return MaterialPageRoute(
-            builder: (_) => MyWidget(
-                  name: settings.name!,
-                ));
+        return MaterialPageRoute(builder: (_) => const BuildingView());
 
       case "/scan":
         return MaterialPageRoute(
@@ -51,17 +49,20 @@ class ErrorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: <Widget>[
-            Text(
-              "404 page not found",
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            TextButton(
-                onPressed: () =>
-                    {Navigator.pushReplacementNamed(context, "/home")},
-                child: const Text("Return to safety"))
-          ],
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                "404 page not found",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              TextButton(
+                  onPressed: () =>
+                      {Navigator.pushReplacementNamed(context, "/home")},
+                  child: const Text("Return to safety"))
+            ],
+          ),
         ),
       ),
     );

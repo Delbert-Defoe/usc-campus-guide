@@ -27,23 +27,6 @@ class _SearchScreenState extends State<SearchScreen> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Material(
-                    borderRadius: BorderRadius.circular(10),
-                    elevation: 10,
-                    color: Colors.white,
-                    child: IconButton(
-                        style: IconButton.styleFrom(
-                            fixedSize: const Size(44, 44),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                        padding: const EdgeInsets.all(8),
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(
-                          Icons.chevron_left,
-                          color: Color(0xFF595959),
-                        )),
-                  ),
-                  const SizedBox(width: 16),
                   Expanded(
                       child: Material(
                     elevation: 10,
