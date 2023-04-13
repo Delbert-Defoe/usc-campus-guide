@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ucg/models/onboarding_model.dart';
 import 'package:ucg/utils/custom_theme.dart';
+import 'package:ucg/services/router.dart';
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -164,7 +165,7 @@ class OnboardingContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         const SizedBox(height: 50,),
+         const SizedBox(height: 10,),
         Container(height: 300,
               width: 300,
           child: Image.asset(
@@ -184,9 +185,13 @@ class OnboardingContent extends StatelessWidget {
         ),
         const SizedBox(height: 20,),
     Text(description,
-        textAlign: TextAlign.center,
+       textAlign: TextAlign.center,
+        style: Theme.of(context)
+        .textTheme
+        .bodyLarge
         
-        ),  
+        ),
+       
     const Spacer()       
       ],
     );
